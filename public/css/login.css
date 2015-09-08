@@ -1,0 +1,86 @@
+html, body {
+    height: 100%;
+    /*background-image: url("../4.jpg") ;*/
+    background-repeat: no-repeat;
+    background-color: #e8edf3;
+    background-size: 100%;
+    background: -webkit-linear-gradient( #22264b , #b56969  , #e6cf8b ,#e8edf3); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#22264b , #b56969  , #e6cf8b ,#e8edf3); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#22264b , #b56969  , #e6cf8b ,#e8edf3 ); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#22264b , #b56969  , #e6cf8b ,#e8edf3 ); /* Standard syntax */
+
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: table;
+    font-weight: 100;
+    /*font-family: 'Lato';*/
+}
+
+.container {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.content {
+    text-align: center;
+    display: inline-block;
+}
+
+.title {
+    font-size: 70px;
+    color: #22264b;
+}
+
+.title2 {
+    font-size: 40px;
+    color: #e8edf3;
+}
+
+.label {
+    font-size: 20px;
+    color: #22264b;
+    width: 50px;
+
+}
+
+input, button {
+    font-size: 20px;
+    color: #22264b;
+
+}
+button:hover{
+    background-color: #22264b !important;
+    color: #b56969 !important;
+}
+.error {
+    font-size: 20px;
+    color: #b56969;
+    /*background-color: #ffffff;*/
+}
+
+.color {
+    background-color: #22264b;
+    color: #e6cf8b !important;
+    /*, 212,​ 100,​ 1*/
+}
+
+input{
+
+    text-align: right;
+
+}
+.link{
+    color:#22264b;
+
+}
+.link:hover {
+    color: #b56969;
+}
+.reg{
+    margin-top: 20px;
+}

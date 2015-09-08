@@ -1,0 +1,155 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Representative;
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+class RepresentativesController extends Controller
+{
+    /**
+     *
+     */
+    protected $pagination_No=5;
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin',['only'=>['destroy']]);
+
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        //
+        $representatives=Representative::paginate($this->pagination_No);
+        return view('representative.all')->with(['representatives'
+                                                    =>$representatives]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+
+        return view('representative.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  Request $request
+     * @return Response
+     */
+    public function store(Request $request)
+    {
+        //
+        $this->validate($request,['name'=>'required',
+                                  'phone'=>'required|unique:representatives|min:12'
+                                   ]);
+        $representative = new Representative();
+        $representative->name = $request->get('name');
+        $representative->phone = $request->get('phone');
+        $representative->save();
+        return redirect('representative/' . $representative->id);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        //
+        $representative = Representative::find($id);
+        if ($representative) {
+            return view('representative.show')->with(['representative'=>$representative]);
+        } else {
+            return view('errors.Unauth')->with(['msg' => 'variables.not_found']);
+        }
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        //
+        $representative = Representative::find($id);
+        if ($representative) {
+            return view('representative.edit')->with(['representative' => $representative]);
+
+        }else{
+            return view('errors.Unauth')->with(['msg' => 'variables.not_found']);
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  Request $request
+     * @param  int $id
+     * @return Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+        $this->validate($request,['name'=>'required',
+            'phone'=>'required|min:12'
+        ]);
+        $representative = Representative::find($id);
+        if ($representative) {
+            $representative->name = $request->get('name');
+            $representative->phone = $request->get('phone');
+            $representative->save();
+            return redirect('representative/' . $representative->id);
+        } else {
+            return view('errors.Unauth')->with(['msg' => 'variables.not_found']);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        Representative::destroy($id);
+        return redirect('representative');
+    }
+
+    /**
+     * @param Request $request
+     * @return $this|\Illuminate\Http\JsonResponse
+     */
+    public function search(Request $request)
+    {
+        $representatives = Representative::where('name', 'like', $request->get('query') . "%")
+            ->orWhere('phone', 'like', '%'.$request->get('query')."%")
+            ->paginate($this->pagination_No);
+        $result=$representatives->toArray();
+        $result['render']=$representatives->render();
+        if($request->get('type')=='json')
+        {
+            return response()->json($result);
+        }
+        return view('representative.all')->with(['representatives' => $representatives]);
+    }
+}
