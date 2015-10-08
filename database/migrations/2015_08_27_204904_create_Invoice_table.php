@@ -15,10 +15,12 @@ class CreateInvoiceTable extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
             $table->date('date');
-            $table->boolean('installation');//true=>with ,false=>without
+            $table->enum('type',['sell','buy']);
             $table->float('additional_discount_percentage');
             $table->float('total_after_sales_tax');
+            $table->integer('duration_expire')->unsigned();
             $table->integer('client_id')->unsigned();
+            $table->string('price_type');
             $table->foreign('client_id')
                 ->references('id')
                 ->on('clients');

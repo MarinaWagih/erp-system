@@ -31,7 +31,10 @@
                     <thead>
                     <tr>
                         <th>@lang('variables.operations')</th>
-                        <th>@lang('variables.price')</th>
+                        <th>@lang('variables.price') 1050</th>
+                        <th>@lang('variables.price') 1250</th>
+                        <th>@lang('variables.price') 1034</th>
+                        <th>@lang('variables.code')</th>
                         <th>@lang('variables.name')</th>
                         <th>@lang('variables.number')</th>
                     </tr>
@@ -42,12 +45,16 @@
                             <tr>
                                 <td>
                                     <a href="/item/{{$item->id}}"> @lang('variables.show')</a>
-                                    <a href="/item/{{$item->id}}/edit">@lang('variables.edit')</a>
+
                                     @if(Auth::user()->type=='admin')
+                                        <a href="/item/{{$item->id}}/edit">@lang('variables.edit')</a>
                                         <a href="/item/{{$item->id}}/delete">@lang('variables.delete')</a>
                                     @endif
                                 </td>
                                 <td>{{$item->price_1050}}</td>
+                                <td>{{$item->price_1250}}</td>
+                                <td>{{$item->price_1034}}</td>
+                                <td>{{$item->code}}</td>
                                 <td>{{$item->name}}</td>
                                 <th scope="row">{{$item->id}}</th>
                             </tr>

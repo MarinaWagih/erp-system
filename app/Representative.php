@@ -19,10 +19,14 @@ class Representative extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'phone'];
+    protected $fillable = ['name', 'phone','user_id'];
 
     public function clients()
     {
         return $this->hasMany('App\Client');
+    }
+    public function user()
+    {
+        return $this->hasOne('App\User');
     }
 }

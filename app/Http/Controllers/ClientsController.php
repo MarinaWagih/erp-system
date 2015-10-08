@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use App\Representative;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ClientsController extends Controller
 {
@@ -39,7 +41,17 @@ class ClientsController extends Controller
     public function index()
     {
         //
-        $clients=Client::paginate($this->pagination_No);
+        if(Auth::user()->type=='representative')
+        {
+            $id=Auth::user()->id;
+//            $rep=Representative::where(['user_id'=>$id])->take(1)->get();
+//            dd($rep);
+            $clients=Client::where(['representative_id'=>$id])->paginate($this->pagination_No);
+        }
+        else
+        {
+            $clients=Client::paginate($this->pagination_No);
+        }
         return view('client.all')->with(['clients'=>$clients]);
 
     }
@@ -52,7 +64,7 @@ class ClientsController extends Controller
     public function create()
     {
         //
-        $rep = Representative::lists('name', 'id');
+        $rep = User::where('type','representative')->lists('email', 'id');
         return view('client.create')->with(['representatives' => $rep]);
     }
 
@@ -72,14 +84,8 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $this->validate($request,['name'=>'required',
-                            'address'=>'required',
                             'phone'=>'required|unique:clients|min:7',
-                            'mobile'=>'required|unique:clients|min:11',
-                            'trading_name'=>'required',
-                            'trading_address'=>'required',
-                            'date'=>'required|date',
                             'representative_id'=>'required']);
         $client = new Client();
         $client->create($request->all());
@@ -95,15 +101,32 @@ class ClientsController extends Controller
      */
     public function show($id)
     {
-        //
         $client = Client::find($id);
-        if ($client) {
+
+        $id=Auth::user()->id;
+        if ($client)
+        {
+            if(Auth::user()->type=='representative')
+            {
+             if($id==$client->representative_id)
+             {
+                 return view('client.show')->with(['client' => $client]);
+             }
+              else
+              {
+                  return view('errors.Unauth')->with(['msg' => 'variables.unauthorized']);
+              }
+            }
+            else
+            {
+                return view('client.show')->with(['client' => $client]);
+            }
 //            dd($client->representative);
-            return view('client.show')->with(['client' => $client]);
-        } else {
+
+        }
+        else {
             return view('errors.Unauth')->with(['msg' => 'variables.not_found']);
         }
-
     }
 
     /**
@@ -115,12 +138,31 @@ class ClientsController extends Controller
     public function edit($id)
     {
         //
-        $rep = Representative::lists('name', 'id');
+        $rep = User::where('type','representative')->lists('email', 'id');
         $client = Client::find($id);
-        if ($client) {
-            return view('client.edit')->with(['representatives' => $rep,
-                'client' => $client
-            ]);
+        if ($client)
+        {
+            if(Auth::user()->type=='representative')
+            {
+                if($id==$client->representative_id)
+                {
+                    return view('client.edit')->with(['representatives' => $rep,
+                        'client' => $client
+                    ]);
+                }
+                else
+                {
+                    return view('errors.Unauth')->with(['msg' => 'variables.unauthorized']);
+                }
+
+            }
+            else
+            {
+                return view('client.edit')->with(['representatives' => $rep,
+                    'client' => $client
+                ]);
+            }
+
         } else {
             return view('errors.Unauth')->with(['msg' => 'variables.not_found']);
         }
@@ -136,18 +178,37 @@ class ClientsController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->validate($request,['name'=>'required',
-            'address'=>'required',
+        $this->validate($request,[
+            'name'=>'required',
+//            'address'=>'required',
             'phone'=>'required|min:7',
-            'mobile'=>'required|min:11',
-            'trading_name'=>'required',
-            'trading_address'=>'required',
-            'date'=>'required|date',
+//            'mobile'=>'required|min:11',
+//            'trading_name'=>'required',
+//            'trading_address'=>'required',
+//            'date'=>'required|date',
             'representative_id'=>'required']);
         $client = Client::find($id);
-        if ($client) {
-            $client->update($request->all());
-            return redirect('client/' . $client->id);
+        if ($client)
+        {
+
+            if(Auth::user()->type=='representative')
+            {
+                if($id==$client->representative_id)
+                {
+                    $client->update($request->all());
+                    return redirect('client/' . $client->id);
+                }
+                else
+                {
+                    return view('errors.Unauth')->with(['msg' => 'variables.unauthorized']);
+                }
+
+            }
+            else
+            {
+                $client->update($request->all());
+                return redirect('client/' . $client->id);
+            }
         } else {
             return view('errors.Unauth')->with(['msg' => 'variables.not_found']);
         }
@@ -168,11 +229,29 @@ class ClientsController extends Controller
 
     public function search(Request $request)
     {
-        $clients = Client::where('name', 'like', $request->get('query') . "%")
-            ->orWhere('phone', 'like', '%' . $request->get('query') . "%")
-            ->orWhere('trading_name', 'like', '%' . $request->get('query') . "%")
-            ->orWhere('trading_address', 'like', '%' . $request->get('query') . "%")
-            ->paginate($this->pagination_No);
+        $name=$request->get('query');
+        if(Auth::user()->type=='representative')
+        {
+            $rep=Representative::where(['user_id'=>Auth::user()->id])->take(1)->get();
+//            dd(Auth::user()->id);
+            $clients = Client::where('representative_id', '=', Auth::user()->id)
+            ->where(function($query) use ($name){
+                    $query->where('name', 'like', $name . "%")
+                        ->orWhere('phone', 'like', '%' .$name . "%")
+                        ->orWhere('trading_name', 'like', '%' .$name . "%")
+                        ->orWhere('trading_address', 'like', '%' . $name . "%");
+
+                })
+                ->paginate($this->pagination_No);
+        }
+        else{
+            $clients = Client::where('name', 'like', $name . "%")
+                        ->orWhere('phone', 'like', '%' .$name . "%")
+                        ->orWhere('trading_name', 'like', '%' .$name . "%")
+                        ->orWhere('trading_address', 'like', '%' . $name . "%")
+                        ->paginate($this->pagination_No);
+        }
+
         $result=$clients->toArray();
         $result['render']=$clients->render();
         if($request->get('type')=='json')
@@ -190,10 +269,25 @@ class ClientsController extends Controller
     public function ajaxSearch(Request $request)
     {
 //        dd($request->get('query'));
-        if($request->get('query')!==null) {
-            $clients = Client::select('id', 'name as text')->where('name', 'like', $request->get('query') . "%")
+        if($request->get('query')!==null)
+        {
+            if(Auth::user()->type=='representative')
+            {
+                $id = Auth::user()->id;
+                $rep = Representative::where(['user_id' => $id])->take(1)->get();
+                $clients=Client::select('id', 'name as text')
+                    ->where('name', 'like', $request->get('query') . "%")
+                    ->where('representative_id','=',$id)
+                    ->get();
+//                dd($clients);
+            }
+            else
+            {
+                $clients = Client::select('id', 'name as text')
+                    ->where('name', 'like', $request->get('query') . "%")
                 ->get();
-            return response()->json($clients);
+             }
+           return response()->json($clients);
         }
         return response()->json();
     }

@@ -17,6 +17,11 @@ class CreateRepresentativesTable extends Migration
             $table->string('name');
             $table->string('phone')->unique();
             $table->timestamps();
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

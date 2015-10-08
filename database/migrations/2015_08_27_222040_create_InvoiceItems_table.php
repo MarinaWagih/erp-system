@@ -22,8 +22,8 @@ class CreateInvoiceItemsTable extends Migration
             $table->integer('item_id')->unsigned();
             $table->foreign('item_id')
                 ->references('id')
-                ->on('items');
-//                ->onDelete('set null');
+                ->on('items')
+                ->onDelete('cascade');
             $table->integer('quantity');
             $table->float('price');
             $table->float('discount_percent');

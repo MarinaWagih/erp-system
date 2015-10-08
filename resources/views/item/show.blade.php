@@ -12,9 +12,9 @@
                 <kbd>{{$item->name}}</kbd>
             </h1>
             <hr>
-            <p>
-                {{ $item->price_31_a}} : 31 A @lang('variables.price')
-            </p>
+            <h3>
+                {{ $item->code}} :  @lang('variables.code')
+            </h3>
 
             <div class="center">
                 <table class="table table-hover right">
@@ -39,12 +39,13 @@
                             <td> B 32 @lang('variables.price')</td>
                             {{--<td><span class="glyphicon glyphicon-tag"></span></td>--}}
                         </tr>
-                        <tr>
-                            <td> {{ $item->price_1034}} </td>
-                            <td> 1034 @lang('variables.price')</td>
-                            {{--<td><span class="glyphicon glyphicon-tag"></span></td>--}}
-                        </tr>
+
                     @endif
+                    <tr>
+                        <td> {{ $item->price_1034}} </td>
+                        <td> 1034 @lang('variables.price')</td>
+                        {{--<td><span class="glyphicon glyphicon-tag"></span></td>--}}
+                    </tr>
                     <tr>
                         <td> {{ $item->price_1050}} </td>
                         <td> 1050 @lang('variables.price')</td>

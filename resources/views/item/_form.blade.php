@@ -5,9 +5,6 @@
             @lang('variables.make_it_right')
             @lang('variables.and')
             @lang('variables.try_again')
-
-
-
             @foreach ($errors->all() as $key=>$error)
                 <div>
                     @if(str_contains($error,'name'))
@@ -34,24 +31,28 @@
     {!! Form::text('name',null,['class'=>'form-control','placeholder'=>$write.' '.$name ]) !!}
 </div>
 <div class="form-group">
+    {!! Form::label('code',$code) !!}
+    {!! Form::text('code',null,['class'=>'form-control','placeholder'=>$write.' '.$code ]) !!}
+</div>
+<div class="form-group">
     {!! Form::label('price','A 31 '.$price) !!}
-    {!! Form::input('number','price_31_a',null,['class'=>'form-control','id'=>'price']) !!}
+    {!! Form::input('number','price_31_a',null,['class'=>'form-control','id'=>'price','min'=>'0','step'=>"0.1"]) !!}
 </div>
 <div class="form-group">
     {!! Form::label('price','B 32 '.$price) !!}
-    {!! Form::input('number','price_32_b',null,['class'=>'form-control','id'=>'price']) !!}
+    {!! Form::input('number','price_32_b',null,['class'=>'form-control','id'=>'price','min'=>'0','step'=>"0.1"]) !!}
 </div>
 <div class="form-group">
     {!! Form::label('price','1050 '.$price) !!}
-    {!! Form::input('number','price_1050',null,['class'=>'form-control','id'=>'price']) !!}
+    {!! Form::input('number','price_1050',null,['class'=>'form-control','id'=>'price','min'=>'0','step'=>"0.1"]) !!}
 </div>
 <div class="form-group">
     {!! Form::label('price','1250 '.$price) !!}
-    {!! Form::input('number','price_1250',null,['class'=>'form-control','id'=>'price']) !!}
+    {!! Form::input('number','price_1250',null,['class'=>'form-control','id'=>'price','min'=>'0','step'=>"0.1"]) !!}
 </div>
 <div class="form-group">
     {!! Form::label('price','1034 '.$price) !!}
-    {!! Form::input('number','price_1034',null,['class'=>'form-control','id'=>'price']) !!}
+    {!! Form::input('number','price_1034',null,['class'=>'form-control','id'=>'price','min'=>'0','step'=>"0.1"]) !!}
 </div>
 <div class="form-group">
 {!! Form::label('picture',$picture) !!}

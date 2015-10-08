@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Representative;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -29,7 +30,7 @@ class RepresentativesController extends Controller
     public function index()
     {
         //
-        $representatives=Representative::paginate($this->pagination_No);
+        $representatives=User::where('type','representative')->paginate($this->pagination_No);
         return view('representative.all')->with(['representatives'
                                                     =>$representatives]);
     }
@@ -39,11 +40,11 @@ class RepresentativesController extends Controller
      *
      * @return Response
      */
-    public function create()
-    {
-
-        return view('representative.create');
-    }
+//    public function create()
+//    {
+//
+//        return view('representative.create');
+//    }
 
     /**
      * Store a newly created resource in storage.
@@ -51,18 +52,18 @@ class RepresentativesController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
-    {
-        //
-        $this->validate($request,['name'=>'required',
-                                  'phone'=>'required|unique:representatives|min:12'
-                                   ]);
-        $representative = new Representative();
-        $representative->name = $request->get('name');
-        $representative->phone = $request->get('phone');
-        $representative->save();
-        return redirect('representative/' . $representative->id);
-    }
+//    public function store(Request $request)
+//    {
+//        //
+//        $this->validate($request,['name'=>'required',
+//                                  'phone'=>'required|unique:representatives|min:11'
+//                                   ]);
+//        $representative = new Representative();
+//        $representative->name = $request->get('name');
+//        $representative->phone = $request->get('phone');
+//        $representative->save();
+//        return redirect('representative/' . $representative->id);
+//    }
 
     /**
      * Display the specified resource.
@@ -73,7 +74,7 @@ class RepresentativesController extends Controller
     public function show($id)
     {
         //
-        $representative = Representative::find($id);
+        $representative = User::find($id);
         if ($representative) {
             return view('representative.show')->with(['representative'=>$representative]);
         } else {
@@ -90,7 +91,7 @@ class RepresentativesController extends Controller
     public function edit($id)
     {
         //
-        $representative = Representative::find($id);
+        $representative = User::find($id);
         if ($representative) {
             return view('representative.edit')->with(['representative' => $representative]);
 
@@ -110,9 +111,9 @@ class RepresentativesController extends Controller
     {
         //
         $this->validate($request,['name'=>'required',
-            'phone'=>'required|min:12'
+            'phone'=>'required|min:11'
         ]);
-        $representative = Representative::find($id);
+        $representative = User::find($id);
         if ($representative) {
             $representative->name = $request->get('name');
             $representative->phone = $request->get('phone');
@@ -131,7 +132,7 @@ class RepresentativesController extends Controller
      */
     public function destroy($id)
     {
-        Representative::destroy($id);
+        User::destroy($id);
         return redirect('representative');
     }
 
@@ -141,7 +142,8 @@ class RepresentativesController extends Controller
      */
     public function search(Request $request)
     {
-        $representatives = Representative::where('name', 'like', $request->get('query') . "%")
+        $representatives = User::where('type','representative')
+            ->where('name', 'like', $request->get('query') . "%")
             ->orWhere('phone', 'like', '%'.$request->get('query')."%")
             ->paginate($this->pagination_No);
         $result=$representatives->toArray();

@@ -41,7 +41,7 @@ class Client extends Model
      */
     public function representative()
     {
-        return $this->belongsTo('App\Representative');
+        return $this->belongsTo('App\User','representative_id','id');
     }
     public function invoices()
     {

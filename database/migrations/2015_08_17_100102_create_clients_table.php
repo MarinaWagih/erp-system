@@ -23,11 +23,11 @@ class CreateClientsTable extends Migration
             $table->string('trading_name');
             $table->string('trading_address');
             $table->date('date');
-            $table->integer('representative_id')->unsigned()->nullable();
             $table->timestamps();
+            $table->integer('representative_id')->unsigned()->nullable();
             $table->foreign('representative_id')
                 ->references('id')
-                ->on('representatives')
+                ->on('users')
                 ->onDelete('set null');
         });
     }

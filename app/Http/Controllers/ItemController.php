@@ -25,7 +25,8 @@ class ItemController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin',['except'=>['index','search']]);
+        $this->middleware('admin',['except'=>['index','search','ajaxSearch',
+                                    'show','search_by_id']]);
 
     }
     /**
@@ -63,7 +64,12 @@ class ItemController extends Controller
         //
         $this->validate($request,['name'=>'required']);
         $item=new Item($request->all());
-        $imageName =$this->saveImg($request);
+        if($request->file('picture')!==null) {
+            $imageName = $this->saveImg($request);
+        }
+        else{
+            $imageName = '';
+        }
         $item->picture=$imageName;
         $item->save();
         return redirect('item');
@@ -150,8 +156,6 @@ class ItemController extends Controller
         Item::destroy($id);
         return redirect('item');
     }
-
-
     /**
      * @param Request $request
      * @return $this|\Illuminate\Http\JsonResponse
@@ -159,7 +163,7 @@ class ItemController extends Controller
     public function search(Request $request)
     {
         $items = Item::where('name', 'like', $request->get('query') . "%")
-//            ->orWhere('phone', 'like', '%'.$request->get('query')."%")
+            ->orWhere('code', 'like', '%'.$request->get('query')."%")
             ->paginate($this->pagination_No);
         $result=$items->toArray();
         $result['render']=$items->render();
@@ -175,14 +179,26 @@ class ItemController extends Controller
      */
     public function ajaxSearch(Request $request)
     {
+        $price_type= $request->get('price_type');
         if($request->get('query')!==null) {
-            $items = Item::select('id', 'name as text','picture'
-               ,'price_1050'
-//, 'price_1250','price_1034'
-            )
+         $items =
+             Item::select('id', 'name as text','picture',$price_type.' as price' )
                 ->where('name', 'like', $request->get('query') . "%")
                 ->orwhere('id', 'like', $request->get('query') . "%")
                 ->get();
+            return response()->json($items);
+        }
+        return response()->json([]);
+    }
+    public function search_by_id(Request $request)
+    {
+        $price_type= $request->get('price_type');
+        if($request->get('query')!==null) {
+            $items =
+                Item::select('id', 'name as text','picture',$price_type.' as price' )
+//                    ->where('name', 'like', $request->get('query') . "%")
+                    ->where('id', '=', $request->get('query'))
+                    ->get();
             return response()->json($items);
         }
         return response()->json([]);
@@ -193,7 +209,8 @@ class ItemController extends Controller
      */
     private function saveImg($request)
     {
-        $imageName=rand(0,9999999999) .rand(0,9999999999) .rand(0,9999999999) .'.'.
+        $imageName=rand(0,9999999999) .
+            rand(0,9999999999) .rand(0,9999999999) .'.'.
         $request->file('picture')->getClientOriginalExtension();
         $request->file('picture')->move(
             base_path() . '/public/images/', $imageName

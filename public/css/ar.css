@@ -145,5 +145,57 @@ input, button{
 }
 #items_list
 {
-    width:566% !important;
+    width:560px !important;
+}
+.delete_item:hover {
+    color: #b56969;
+}
+.bg-logo{
+
+    margin:20px auto;
+    background-image: url("../coloredLogo2.jpg") ;
+    background-repeat: no-repeat ;
+    background-color: #fff;
+    background-position: bottom;
+    /*background-size: 100%;*/
+}
+.show_img{
+    width: 150px;
+    height: auto;
+}
+.left{
+
+    float: right;
+    display: inline;
+}
+.clear{
+    clear: both;
+}
+.first{
+    margin-right: 10%;
+}
+.bg_img{
+    display: none;
+}
+@media print{
+   .Dashboard,.nav-color,#print
+   {
+       visibility: hidden;
+   }
+    .show_img{
+        width: 100px;
+        height: auto;
+    }
+    .bg-logo{
+        float: right;
+        position: relative;
+        z-index: 1000;
+        /*margin-top: -100%;*/
+        /*background-size: 100%;*/
+    }
+    .wrapper{
+        position: relative;
+    }
+    /*.bg_img{display:inline; z-index: -1 ;margin: 0 auto; position: absolute;}*/
+    /** {-webkit-print-color-adjust:exact;}*/
 }

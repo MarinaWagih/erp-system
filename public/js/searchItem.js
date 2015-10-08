@@ -24,6 +24,9 @@ function sendData()
                 }
                 toShow+='</td>';
                 toShow+='<td>'+result.data[i].price_1050+'</td>';
+                toShow+='<td>'+result.data[i].price_1250+'</td>';
+                toShow+='<td>'+result.data[i].price_1034+'</td>';
+                toShow+='<td>'+result.data[i].code+'</td>';
                 toShow+='<td>'+result.data[i].name+'</td>';
                 toShow+='<td>'+result.data[i].id+'</td>';
                 toShow+='</tr>';

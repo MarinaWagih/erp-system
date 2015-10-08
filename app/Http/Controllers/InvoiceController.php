@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use App\Invoice;
+use App\Representative;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class InvoiceController extends Controller
 {
@@ -39,8 +41,18 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $invoices = Invoice::paginate($this->pagination_No);
-//        dd($invoices[0]->id);
+        if(Auth::user()->type=='representative') {
+            $id = Auth::user()->id;
+//            $rep = Representative::where(['user_id' => $id])->take(1)->get();
+            $invoices = Invoice::where('clients.representative_id','=',$id)
+                ->join('clients','clients.id','=','invoices.client_id')
+                ->paginate($this->pagination_No);
+        }
+        else
+        {
+            $invoices = Invoice::paginate($this->pagination_No);
+        }
+
         return view('invoice.all')->with(['invoices' => $invoices]);
     }
 
@@ -51,8 +63,16 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        $clients=Client::lists('name', 'id');
-        return view('invoice.create')->with(['clients'=>$clients]);
+//        if(Auth::user()->type=='representative') {
+////            $id = Auth::user()->id;
+////            $rep = Representative::where(['user_id' => $id])->take(1)->get();
+////            $clients=Client::where('representative_id','=',$rep[0]->id)->lists('name', 'id');
+//        }
+//        else
+//        {
+////             $clients=Client::lists('name', 'id');
+//        }
+        return view('invoice.create');
     }
 
     /**
@@ -65,14 +85,14 @@ class InvoiceController extends Controller
     {
         $this->validate($request, [
             'date' => 'required|date',
-            'installation' => 'required|min:0|max:1',
+            'type' => 'required',
             'client_id' => 'required',
         ]);
-        $invoice = new Invoice();
-        $invoice->create($request->all());
+        $invoice = Invoice::create($request->all());
+
+//        dd($invoice->id);
         $items=$this->prepareItems($request->get('items'));
         $invoice->items()->sync($items);
-//        return redirect('invoice/'.$invoice->id);
         return view('invoice.show')->with(['invoice' => $invoice]);
     }
 
@@ -85,8 +105,24 @@ class InvoiceController extends Controller
     public function show($id)
     {
         $invoice = Invoice::find($id);
+
+
         if ($invoice) {
+            $id = Auth::user()->id;
+            if(Auth::user()->type=='representative')
+            {
+                if($invoice->client->representative_id==$id)
+
+                {
+                    return view('invoice.show')->with(['invoice' => $invoice]);
+                }
+                else{
+                    return view('errors.Unauth')->with(['msg' => 'variables.unauthorized']);
+                }
+            }
+            else{
             return view('invoice.show')->with(['invoice' => $invoice]);
+            }
         } else {
             return view('errors.Unauth')
                 ->with(['msg' => 'variables.not_found']);
@@ -101,12 +137,35 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
-        //
         $invoice = Invoice::find($id);
-        if ($invoice) {
-            $clients=Client::lists('name', 'id');
-            return view('invoice.edit')->with(['invoice' => $invoice,'clients'=>$clients]);
-        } else {
+        if ($invoice)
+        {
+            $id = Auth::user()->id;
+            if(Auth::user()->type=='representative')
+            {
+                if($invoice->client->representative_id==$id)
+                {
+//                    $id = Auth::user()->id;
+//                    $rep = Representative::where(['user_id' => $id])
+//                       ->take(1)->get();
+//                    $clients=Client::where('representative_id','=',$rep[0]->id)
+//                        ->where('id','!=',$invoice->client->id)->get();
+//                    dd($clients);
+                    return view('invoice.edit')->with(['invoice' => $invoice]);
+                }
+                else
+                {
+                    return view('errors.Unauth')->with(['msg' => 'variables.unauthorized']);
+                }
+            }
+            else
+            {
+//                $clients=Client::where('id','!=',$invoice->client->id)->get();
+                return view('invoice.edit')->with(['invoice' => $invoice]);
+            }
+        }
+        else
+        {
             return view('errors.Unauth')
                 ->with(['msg' => 'variables.not_found']);
         }
@@ -124,10 +183,11 @@ class InvoiceController extends Controller
     {
         $this->validate($request, [
             'date' => 'required|date',
-            'installation' => 'required|min:0|max:1',
+            'type' => 'required',
             'client_id' => 'required',
         ]);
         $invoice = Invoice::find($id);
+//        dd($request->get(''));
         if ($invoice) {
             $invoice->update($request->all());
             $items=$this->prepareItems($request->get('items'));
@@ -157,9 +217,22 @@ class InvoiceController extends Controller
      */
     public function search(Request $request)
     {
-        $invoices = Invoice::where('id','like',$request->get('query')."%")
-                       ->orWhere('date','like',$request->get('query')."%")
-                       ->paginate($this->pagination_No);
+        if(Auth::user()->type=='representative') {
+            $id = Auth::user()->id;
+//            $rep = Representative::where(['user_id' => $id])->take(1)->get();
+            $invoices = Invoice::where('clients.representative_id','=',$id)
+                ->where('invoices.id','like',$request->get('query')."%")
+                ->orWhere('invoices.date','like',$request->get('query')."%")
+                ->join('clients','clients.id','=','invoices.client_id')
+                ->paginate($this->pagination_No);
+        }
+        else
+        {
+            $invoices =Invoice::where('id','like',$request->get('query')."%")
+                ->orWhere('date','like',$request->get('query')."%")
+                ->paginate($this->pagination_No);
+        }
+
         $result = $invoices->toArray();
         $result['render'] = $invoices->render();
         if ($request->get('type') == 'json') {
@@ -174,12 +247,8 @@ class InvoiceController extends Controller
      */
     private function prepareItems($items)
     {
-        $result=[];
-//        foreach($items as $item)
-//        {
-//
-//            $result[$item->id]=$item;
-//        }
-        return $result;
+
+        $items= json_decode($items, true);
+        return $items;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Representative;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -26,14 +27,14 @@ class AuthController extends Controller
     /**
      * Create a new authentication controller instance.
      *
-     * @return void
+     *
      */
 
     public function __construct()
     {
         $this->middleware('guest', ['except' => ['getLogout','getRegister','postRegister']]);
         $this->middleware('auth',['only'=>['getRegister','postRegister']]);
-        $this->middleware('admin',['only'=>['getRegister','postRegister']]);
+//        $this->middleware('admin',['only'=>['getRegister','postRegister']]);
     }
 
     /**
@@ -47,8 +48,10 @@ class AuthController extends Controller
         return Validator::make($data, [
 //            'name' => 'required|max:255',
             'email' => 'required|max:255|unique:users',
+            'phone' => 'required|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
-            'type'=>'required'
+            'type'=>'required',
+
         ]);
     }
 
@@ -60,11 +63,14 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-//            'name' => $data['name'],
+        $user= User::create([
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'type'=>$data['type']
+            'type'=>$data['type'],
+            'name' => $data['name']!==''?$data['name']:$data['email'],
+            'phone' => $data['phone']
         ]);
+
+        return $user;
     }
 }

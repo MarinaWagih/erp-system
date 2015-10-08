@@ -27,6 +27,10 @@
                             @lang('variables.user_name')
                         @elseif(str_contains($error,'password'))
                             @lang('variables.password')
+                        @elseif(str_contains($error,'name'))
+                            @lang('variables.name')
+                        @elseif(str_contains($error,'phone'))
+                            @lang('variables.phone')
                         @elseif(str_contains($error,'password confirmation'))
                             @lang('variables.confirm') @lang('variables.password')
                         @endif
@@ -36,6 +40,8 @@
                             @lang('variables.do_not') @lang('variables.match')
                         @elseif(str_contains($error,'at least 6'))
                             @lang('variables.at_least_6')
+                        @elseif(str_contains($error,'at least'))
+                            @lang('variables.at_least_12')
                         @elseif(str_contains($error,'taken'))
                                 @lang('variables.taken')
                         @endif
@@ -49,7 +55,17 @@
         </div>
         <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+            <div id="representative_data" >
+                <div class="form-group">
+                    <label for="type">@lang('variables.name')</label>
+                    <input type="text" class="form-control" name="name" value="" placeholder="@lang('variables.write') @lang('variables.name')">
+                    {{--{!! Form::text('name',null,['class'=>'form-control','placeholder'=>$write.' '.$name ]) !!}--}}
+                </div>
+                <div class="form-group">
+                    <label for="type">@lang('variables.phone')</label>
+                    <input type="text" class="form-control" name="phone" value="" placeholder="@lang('variables.write') @lang('variables.phone')">
+                </div>
+            </div>
             <div class="form-group">
                 <label for="email">@lang('variables.user_name')</label>
 
@@ -71,12 +87,17 @@
 
             </div>
             <div class="form-group">
-                <label for="type">@lang('variables.type')</label>
 
-                <select name="type" class="form-control">
-                    <option value="admin">@lang('variables.admin')</option>
-                    <option value="user" selected>@lang('variables.user')</option>
-                </select>
+                @if(Auth::user()->type=='admin')
+                    <label for="type">@lang('variables.type')</label>
+                    <select name="type" class="form-control" id="type">
+                        <option value="admin">@lang('variables.admin')</option>
+                        <option value="user" selected>@lang('variables.user')</option>
+                        <option value="representative">@lang('variables.representative1')</option>
+                    </select>
+                @else
+                    <input type="hidden" name="type" id="type" value="representative">
+                @endif
             </div>
 
             <div class="form-group">
@@ -86,8 +107,12 @@
                 </button>
 
             </div>
+
         </form>
 
 
     </div>
+@stop
+@section('js')
+    <script src="{{URL::asset('/js/addRepresentative.js')}}"></script>
 @stop

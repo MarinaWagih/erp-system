@@ -49,7 +49,7 @@
                                         <a href="/invoice/{{$invoice->id}}/delete">@lang('variables.delete')</a>
                                     @endif
                                 </td>
-                                <td>{{$invoice->date->format('d-m-Y')}}</td>
+                                <td>{{$invoice->date}}</td>
 {{--                                <td>{{$invoice->total()}}</td>--}}
                                 <td>
                                     @if($invoice->installation=='1')

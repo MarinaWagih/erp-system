@@ -88,8 +88,13 @@
     {!! Form::input('date','date',date('Y-m-d'),['class'=>'form-control','id'=>'date']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('representative',$representative) !!}
-    {!! Form::select('representative_id',$representatives,null,['class'=>'form-control',]) !!}
+    @if(Auth::user()->type!=='representative')
+        {!! Form::label('representative',$representative) !!}
+        {!! Form::select('representative_id',$representatives,null,['class'=>'form-control',]) !!}
+    @else
+
+      <input type="hidden" name='representative_id',value="{{Auth:: user()->representative->id}}" class=form-control']) >
+    @endif
 </div>
 <div class="form-group">
     {!! Form::submit($submitText,['class'=>'btn color']) !!}

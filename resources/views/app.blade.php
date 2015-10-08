@@ -1,14 +1,14 @@
 </<!DOCTYPE html>
 <html>
 <head>
-    <link rel="shortcut icon" href="../fav.png">
+    <link rel="shortcut icon" href="{{ URL::asset('/fav.png')}}">
 
     <title>
         @yield('title')
     </title>
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/bootstrap.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/bootstrap-theme.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/ar.css')}}">
+    <link rel="stylesheet" media="all" type="text/css" href="{{ URL::asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" media="all" type="text/css" href="{{ URL::asset('css/bootstrap-theme.min.css')}}">
+    <link rel="stylesheet" media="all" type="text/css" href="{{ URL::asset('css/ar.css')}}">
     {{--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />--}}
 
     @yield('css')
@@ -33,7 +33,8 @@
 
     </div>
 </nav>
-{{--<div class='container-fluid'>--}}
+
+{{--<div class="row">--}}
 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
     <div class='container-fluid'>
         @yield('content')
@@ -70,6 +71,7 @@
     {{--**********************************************--}}
     <hr>
     {{--******************Representative Element******--}}
+    @if(Auth::user()->type !='representative')
     <div class="panel-default">
         <a class="collapsed" role="button"
            data-toggle="collapse" data-parent="#accordion"
@@ -87,7 +89,7 @@
                     <span class="glyphicon glyphicon-search" ></span>
                 </a>
                 <br>
-                <a role="button"  href="/representative/create" class="dash_link">
+                <a role="button"  href="/auth/register" class="dash_link">
 
                     @lang('variables.add') @lang('variables.representative1')
                     <span class="glyphicon glyphicon-plus"></span>
@@ -95,9 +97,12 @@
             </div>
         </div>
     </div>
-    {{--**********************************************--}}
     <hr>
+    @endif
+    {{--**********************************************--}}
+
     {{--******************item Element**************--}}
+    @if(Auth::user()->type!='user')
     <div class="panel-default">
         <a class="collapsed" role="button"
            data-toggle="collapse" data-parent="#accordion"
@@ -115,18 +120,22 @@
                     <span class="glyphicon glyphicon-search"></span>
                 </a>
                 <br>
-                <a role="button"  href="/item/create" class="dash_link">
+                @if(Auth::user()->type=='admin')
+                    <a role="button"  href="/item/create" class="dash_link">
 
-                    @lang('variables.add') @lang('variables.item')
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
+                        @lang('variables.add') @lang('variables.item')
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                @endif
             </div>
         </div>
     </div>
-
-    {{--**********************************************--}}
     <hr>
+    @endif
+    {{--**********************************************--}}
+
     {{--******************invoice Element**************--}}
+    @if(Auth::user()->type!='user')
     <div class="panel-default">
         <a class="collapsed" role="button"
            data-toggle="collapse" data-parent="#accordion"
@@ -152,9 +161,10 @@
             </div>
         </div>
     </div>
-
-    {{--**********************************************--}}
     <hr>
+    @endif
+    {{--**********************************************--}}
+
     @if(Auth::user()->type=='admin')
         {{--******************user Element**************--}}
         <div class="panel-default">

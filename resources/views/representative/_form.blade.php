@@ -6,8 +6,6 @@
             @lang('variables.and')
             @lang('variables.try_again')
 
-
-
             @foreach ($errors->all() as $key=>$error)
                 <div>
                     @if(str_contains($error,'name'))

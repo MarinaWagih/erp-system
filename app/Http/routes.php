@@ -41,6 +41,7 @@ Route::get('item/{id}/delete','ItemController@destroy');
 Route::post('item/search','ItemController@search');
 Route::get('item/search','ItemController@search');
 Route::get('item/ajax_search','ItemController@ajaxSearch');
+Route::get('item/search_by_id','ItemController@search_by_id');
 Route::resource('item','ItemController');
 //invoice Routes
 Route::get('invoice/{id}/delete','InvoiceController@destroy');

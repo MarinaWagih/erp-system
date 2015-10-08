@@ -13,7 +13,9 @@
                                  'name'   =>Lang::get('variables.name'),
                                  'write'  =>Lang::get('variables.write'),
                                  'price'  =>Lang::get('variables.price'),
+                                 'code'  =>Lang::get('variables.code'),
                                  'picture'=>Lang::get('variables.picture'),
+
                                  ])
     {!! Form::close()!!}
 </div>
