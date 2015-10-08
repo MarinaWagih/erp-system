@@ -156,7 +156,7 @@ input, button{
     background-image: url("../coloredLogo2.jpg") ;
     background-repeat: no-repeat ;
     background-color: #fff;
-    background-position: bottom;
+    background-position: center;
     /*background-size: 100%;*/
 }
 .show_img{

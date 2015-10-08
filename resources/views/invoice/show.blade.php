@@ -90,8 +90,23 @@
                                 <span class="glyphicon glyphicon-check"></span>
                             </td>
                         @elseif($invoice->price_type=='price_31_a')
-                            <td >{{$invoice->price_type}}</td>
-                            <td> @lang('variables.without_installation') </td>
+                            <td>
+                                @lang('variables.sell')
+                                <span class="glyphicon glyphicon-unchecked"></span>
+                            </td>
+                            <td>
+                                @lang('variables.buy')
+                                <span class="glyphicon glyphicon-check"></span>
+                            </td>
+                        @elseif($invoice->price_type=='price_32_b')
+                            <td>
+                                @lang('variables.sell')
+                                <span class="glyphicon glyphicon-unchecked"></span>
+                            </td>
+                            <td>
+                                @lang('variables.buy')
+                                <span class="glyphicon glyphicon-check"></span>
+                            </td>
                         @endif
 
 
@@ -271,6 +286,21 @@
         </div>
         {{--========================================================--}}
         {{--========================================================--}}
+        <div class="row">
+            <div class="col-xs-3">
+                <p class="title5">
+                    توقيع العميل
+                </p>
+            </div>
+            <div class="col-xs-9">
+                    <p class="title5">
+                        نرجو أن يحوز العرض قبولكم
+                    </p>
+                    <p class="title5">
+                        لا يعتد بهذا المستند إلا بأصل الفتورة معتمدة و مختومة من الشركة
+                    </p>
+            </div>
+        </div>
     </div>
 
 @stop

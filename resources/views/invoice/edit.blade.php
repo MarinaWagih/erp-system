@@ -531,8 +531,8 @@
                     if (this.checked && this.value == 'buy')
                     {
 
-                        var options='<option value="price_32_b">32 b'+price+' </option>'+
-                                ' <option value="price_31_a">31 a '+price+'</option>';
+                        var options='<option value="price_31_a">31 a'+price+' </option>'+
+                                ' <option value="price_32_b">32 b '+price+'</option>';
                         $('#price_type').html(options);
                         doAjax();
                         changeDiscount();

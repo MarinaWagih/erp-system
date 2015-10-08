@@ -25,24 +25,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/invoice/show.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.454545" vertical-offset="0" max-vertical-offset="576">
-              <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.7815126" vertical-offset="2439" max-vertical-offset="3240">
+              <caret line="298" column="36" selection-start-line="298" selection-start-column="36" selection-end-line="298" selection-end-column="36" />
               <folding>
-                <element signature="e#665#13289#0#HTML" expanded="false" />
-                <element signature="e#0#13529#0#Blade" expanded="false" />
+                <element signature="e#0#14777#0#Blade" expanded="false" />
+                <element signature="e#862#1535#0#HTML" expanded="false" />
+                <element signature="e#892#1265#0#HTML" expanded="false" />
+                <element signature="e#5817#8469#0#HTML" expanded="false" />
+                <element signature="e#8783#13876#0#HTML" expanded="false" />
+                <element signature="e#0#14777#0#Blade" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="core.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="core.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/core.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22464898" vertical-offset="0" max-vertical-offset="648">
-              <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="648">
+              <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -51,8 +55,8 @@
       <file leaf-file-name="ar.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/ar.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4279" max-vertical-offset="4944">
-              <caret line="199" column="4" selection-start-line="199" selection-start-column="4" selection-end-line="199" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2950" max-vertical-offset="4944">
+              <caret line="158" column="31" selection-start-line="158" selection-start-column="31" selection-end-line="158" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -61,9 +65,12 @@
       <file leaf-file-name="_form.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/invoice/_form.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.9375" vertical-offset="2500" max-vertical-offset="7392">
-              <caret line="112" column="133" selection-start-line="112" selection-start-column="133" selection-end-line="112" selection-end-column="133" />
-              <folding />
+            <state vertical-scroll-proportion="-1.3125" vertical-offset="1356" max-vertical-offset="7488">
+              <caret line="60" column="37" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="37" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#td#6;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#8;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -71,15 +78,13 @@
       <file leaf-file-name="edit.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/invoice/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.484375" vertical-offset="12529" max-vertical-offset="15792">
-              <caret line="550" column="52" selection-start-line="550" selection-start-column="52" selection-end-line="550" selection-end-column="52" />
+            <state vertical-scroll-proportion="-4.484375" vertical-offset="12529" max-vertical-offset="16176">
+              <caret line="534" column="65" selection-start-line="534" selection-start-column="65" selection-end-line="534" selection-end-column="65" />
               <folding>
-                <element signature="e#26845#27215#0#HTML" expanded="false" />
-                <element signature="e#27303#27758#0#HTML" expanded="false" />
                 <element signature="e#27832#29884#0#HTML" expanded="false" />
                 <element signature="e#30129#32181#0#HTML" expanded="false" />
-                <marker date="1444294193503" expanded="true" signature="675:1547" placeholder="..." />
-                <marker date="1444294193503" expanded="true" signature="692:1546" placeholder="..." />
+                <marker date="1444297128971" expanded="true" signature="675:1547" placeholder="..." />
+                <marker date="1444297128971" expanded="true" signature="692:1546" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -194,14 +199,14 @@
         <option value="$PROJECT_DIR$/app/Client.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" />
         <option value="$PROJECT_DIR$/resources/views/item/_form.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/invoice/show.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/invoice/_form.blade.php" />
-        <option value="$PROJECT_DIR$/public/css/ar.css" />
         <option value="$PROJECT_DIR$/resources/views/item/all.blade.php" />
         <option value="$PROJECT_DIR$/public/js/searchItem.js" />
         <option value="$PROJECT_DIR$/public/js/invoicePreparation.js" />
-        <option value="$PROJECT_DIR$/resources/views/invoice/edit.blade.php" />
         <option value="$PROJECT_DIR$/public/js/core.js" />
+        <option value="$PROJECT_DIR$/resources/views/invoice/_form.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/invoice/edit.blade.php" />
+        <option value="$PROJECT_DIR$/public/css/ar.css" />
+        <option value="$PROJECT_DIR$/resources/views/invoice/show.blade.php" />
       </list>
     </option>
   </component>
@@ -360,24 +365,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Help_desk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Help_desk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -387,7 +374,7 @@
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="last_opened_file_path" value="/var/www/html/q8DZ" />
+    <property name="last_opened_file_path" value="/var/www/html/q8soccer" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="SearchEverywhereHistoryKey" value="prepa&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/public/js/invoicePreparation.js&#10;ar&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/public/css/ar.css&#10;app&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/views/app.blade.php&#10;addRepresentative&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/public/js/addRepresentative.js&#10;_&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/views/invoice/_form.blade.php&#10;rou&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/app/Http/routes.php&#10;itemc&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/app/Http/Controllers/ItemController.php&#10;invo&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/public/js/invoicePreparation.js&#10;in&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/public/js/invoicePreparation.js&#10;va&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/lang/ar/variables.php&#10;ed&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/views/invoice/edit.blade.php&#10;ar.c&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/public/css/ar.css&#10;invoice&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/app/Http/Controllers/InvoiceController.php&#10;vari&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/lang/ar/variables.php&#10;route&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/app/Http/routes.php&#10;rout&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/app/Http/routes.php&#10;var&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/lang/ar/variables.php&#10;all&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/views/representative/all.blade.php&#10;ro&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/app/Http/Controllers/Auth/AuthController.php" />
     <property name="FullScreen" value="false" />
@@ -446,7 +433,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="24" width="1299" height="744" extended-state="7" />
+    <frame x="67" y="24" width="1299" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -456,7 +443,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18552732" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20246343" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935917" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -475,8 +462,8 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935917" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -487,7 +474,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18167822" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20246343" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24942264" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -859,14 +846,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/ar.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4279" max-vertical-offset="4944">
-          <caret line="199" column="4" selection-start-line="199" selection-start-column="4" selection-end-line="199" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/searchInvoice.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6926752" vertical-offset="189" max-vertical-offset="1416">
@@ -883,29 +862,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/invoice/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.454545" vertical-offset="0" max-vertical-offset="576">
-          <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-          <folding>
-            <element signature="e#665#13289#0#HTML" expanded="false" />
-            <element signature="e#0#13529#0#Blade" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/searchItem.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6369427" vertical-offset="344" max-vertical-offset="1224">
           <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/invoice/_form.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.9375" vertical-offset="2500" max-vertical-offset="7392">
-          <caret line="112" column="133" selection-start-line="112" selection-start-column="133" selection-end-line="112" selection-end-column="133" />
           <folding />
         </state>
       </provider>
@@ -959,26 +919,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/invoice/edit.blade.php">
+    <entry file="file://$PROJECT_DIR$/public/js/core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.484375" vertical-offset="12529" max-vertical-offset="15792">
-          <caret line="550" column="52" selection-start-line="550" selection-start-column="52" selection-end-line="550" selection-end-column="52" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="648">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/invoice/_form.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3125" vertical-offset="1356" max-vertical-offset="7488">
+          <caret line="60" column="37" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="37" />
           <folding>
-            <element signature="e#26845#27215#0#HTML" expanded="false" />
-            <element signature="e#27303#27758#0#HTML" expanded="false" />
-            <element signature="e#27832#29884#0#HTML" expanded="false" />
-            <element signature="e#30129#32181#0#HTML" expanded="false" />
-            <marker date="1444294193503" expanded="true" signature="675:1547" placeholder="..." />
-            <marker date="1444294193503" expanded="true" signature="692:1546" placeholder="..." />
+            <element signature="n#style#0;n#img#0;n#td#6;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#8;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/core.js">
+    <entry file="file://$PROJECT_DIR$/resources/views/invoice/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22464898" vertical-offset="0" max-vertical-offset="648">
-          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+        <state vertical-scroll-proportion="-4.484375" vertical-offset="12529" max-vertical-offset="16176">
+          <caret line="534" column="65" selection-start-line="534" selection-start-column="65" selection-end-line="534" selection-end-column="65" />
+          <folding>
+            <element signature="e#27832#29884#0#HTML" expanded="false" />
+            <element signature="e#30129#32181#0#HTML" expanded="false" />
+            <marker date="1444297128971" expanded="true" signature="675:1547" placeholder="..." />
+            <marker date="1444297128971" expanded="true" signature="692:1546" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/ar.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2950" max-vertical-offset="4944">
+          <caret line="158" column="31" selection-start-line="158" selection-start-column="31" selection-end-line="158" selection-end-column="31" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/invoice/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7815126" vertical-offset="2439" max-vertical-offset="3240">
+          <caret line="298" column="36" selection-start-line="298" selection-start-column="36" selection-end-line="298" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#14777#0#Blade" expanded="false" />
+            <element signature="e#862#1535#0#HTML" expanded="false" />
+            <element signature="e#892#1265#0#HTML" expanded="false" />
+            <element signature="e#5817#8469#0#HTML" expanded="false" />
+            <element signature="e#8783#13876#0#HTML" expanded="false" />
+            <element signature="e#0#14777#0#Blade" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
