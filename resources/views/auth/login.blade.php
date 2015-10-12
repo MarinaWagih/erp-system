@@ -29,7 +29,7 @@
             <div class="form-group">
                 <label class="label">@lang('variables.user_name') </label>
                 <br>
-                <input type="text" name="email" class="form-control" value="{{ old('email') }}">
+                <input type="text" name="email" class="form-control" value="">
             </div>
 
             <div class="form-group">

@@ -88,12 +88,14 @@
                     @lang('variables.search')
                     <span class="glyphicon glyphicon-search" ></span>
                 </a>
-                <br>
-                <a role="button"  href="/auth/register" class="dash_link">
+                @if(Auth::user()->type !='admin')
+                    <br>
+                    <a role="button"  href="/auth/register" class="dash_link">
 
-                    @lang('variables.add') @lang('variables.representative1')
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
+                        @lang('variables.add') @lang('variables.representative1')
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                @endif
             </div>
         </div>
     </div>

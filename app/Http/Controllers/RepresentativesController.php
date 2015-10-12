@@ -142,9 +142,13 @@ class RepresentativesController extends Controller
      */
     public function search(Request $request)
     {
+        $name=$request->get('query');
         $representatives = User::where('type','representative')
-            ->where('name', 'like', $request->get('query') . "%")
-            ->orWhere('phone', 'like', '%'.$request->get('query')."%")
+            ->where(
+                function($query) use ($name){
+                    $query->where('name', 'like', $name . "%")
+                        ->orWhere('phone', 'like', '%' .$name . "%");
+                })
             ->paginate($this->pagination_No);
         $result=$representatives->toArray();
         $result['render']=$representatives->render();

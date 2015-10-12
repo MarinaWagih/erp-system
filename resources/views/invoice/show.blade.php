@@ -12,7 +12,7 @@
 @section('content')
     <button class="btn btn-warning masafa" id="print">@lang('variables.print')</button>
     <div class="wrapper"></div>
-    <img src="{{URL::asset('/coloredLogo2.jpg')}}" class="bg_img">
+
     <div class="masafa bg-logo" id="content">
 
         {{--===================id&& 2images=========================--}}

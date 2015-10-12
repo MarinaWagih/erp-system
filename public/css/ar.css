@@ -175,7 +175,8 @@ input, button{
     margin-right: 10%;
 }
 .bg_img{
-    display: none;
+    /*display: none;*/
+    margin: 0 auto;
 }
 @media print{
    .Dashboard,.nav-color,#print
