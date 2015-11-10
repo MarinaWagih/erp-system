@@ -107,7 +107,7 @@
                     table_show += value.quantity;
                     table_show += '</td>';
                     table_show += '<td>';
-                    table_show += '<img src="/images/'+itemsajax[index].picture+'" style="height: 50px;width:50px" >';
+                    table_show += '<img src="{{URL::asset('images')}}/'+itemsajax[index].picture+'" style="height: 50px;width:50px" >';
                     table_show += '</td>';
                     table_show += '<td>';
                     table_show += itemsajax[index].text;
@@ -313,7 +313,7 @@
                         table_show += itemQuantity;
                         table_show += '</td>';
                         table_show += '<td>';
-                        table_show += '<img src="/images/'+itemsajax[itemId].picture+'" style="height: 50px;width:50px" >';
+                        table_show += '<img src="{{URL::asset('images')}}/'+itemsajax[itemId].picture+'" style="height: 50px;width:50px" >';
                         table_show += '</td>';
                         table_show += '<td>';
                         table_show += itemsajax[itemId].text;
@@ -350,7 +350,7 @@
                         table_show += itemQuantity;
                         table_show += '</td>';
                         table_show += '<td>';
-                        table_show += '<img src="/images/'+itemsajax[itemId].picture+'" style="height: 50px;width:50px" >';
+                        table_show += '<img src="{{URL::asset('images')}}/'+itemsajax[itemId].picture+'" style="height: 50px;width:50px" >';
                         table_show += '</td>';
                         table_show += '<td>';
                         table_show += itemsajax[itemId].text;
@@ -430,7 +430,7 @@
                         table_show += itemQuantity;
                         table_show += '</td>';
                         table_show += '<td>';
-                        table_show += '<img src="/images/'+itemsajax[itemId].picture+'" style="height: 50px;width:50px" >';
+                        table_show += '<img src="{{URL::asset('images')}}/'+itemsajax[itemId].picture+'" style="height: 50px;width:50px" >';
                         table_show += '</td>';
                         table_show += '<td>';
                         table_show += itemsajax[itemId].text;
@@ -467,7 +467,7 @@
                         table_show += itemQuantity;
                         table_show += '</td>';
                         table_show += '<td>';
-                        table_show += '<img src="/images/'+itemsajax[itemId].picture+'" style="height: 50px;width:50px" >';
+                        table_show += '<img src="{{URL::asset('images')}}/'+itemsajax[itemId].picture+'" style="height: 50px;width:50px" >';
                         table_show += '</td>';
                         table_show += '<td>';
                         table_show += itemsajax[itemId].text;
