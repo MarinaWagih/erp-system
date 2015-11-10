@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-2">
-            <a href="/client/{{$client->id}}/edit">
+            <a href="{{ URL::action('ClientsController@index')}}/{{$client->id}}/edit">
                 <h2 class="link">
                     @lang('variables.edit')
                     <span class="glyphicon glyphicon-edit"></span>
@@ -13,7 +13,7 @@
                 </h2>
             </a>
             @if(Auth::user()->type=='admin')
-                <a href="/client/{{$client->id}}/delete">
+                <a href="{{ URL::action('ClientsController@index')}}/{{$client->id}}/delete">
                     <h2 class="link">
                         @lang('variables.delete')
                         <span class="glyphicon glyphicon-remove"></span>
@@ -26,7 +26,7 @@
             <div class="panel panel-default">
                 <div class="color title2 panel_title">
 
-                    <a href="/client/{{$client->id}}">
+                    <a href="{{ URL::action('ClientsController@index')}}/{{$client->id}}">
                         {{$client->name}}
                     </a>
                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>

@@ -142,7 +142,7 @@
                 {
                     $.each(item_to_add, function( index, value ){
 
-                        $.ajax({url:'/item/search_by_id',
+                        $.ajax({url:'{{ URL::action('ItemController@search_by_id')}}',
                                    data: {
                                         query: index, // search term
                                         price_type:$('#price_type').val()
@@ -462,7 +462,7 @@
                 $("#clients").select2({
                     dir: "rtl",
                     ajax: {
-                        url: "/client/ajax_search",
+                        url: "{{ URL::action('ClientsController@ajaxSearch')}}",
 
                         dataType: 'json',
                         delay: 250,
@@ -493,7 +493,7 @@
                 $("#items_list").select2({
                     dir: "rtl",
                     ajax: {
-                        url: "/item/ajax_search",
+                        url: "{{ URL::action('ItemController@ajaxSearch')}}",
 
                         dataType: 'json',
                         delay: 250,

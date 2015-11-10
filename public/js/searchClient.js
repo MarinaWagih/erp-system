@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     function sendData()
     {
-        $.post('/client/search',
+        $.post($('#search_link').val(),
             {
                 'query':$('#query').val(),
                 '_token':$('#_token').val(),
