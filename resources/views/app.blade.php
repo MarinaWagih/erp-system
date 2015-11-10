@@ -1,4 +1,4 @@
-</<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <link rel="shortcut icon" href="{{ URL::asset('/fav.png')}}">
