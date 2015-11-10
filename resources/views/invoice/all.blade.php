@@ -43,10 +43,10 @@
                         @foreach($invoices as $invoice)
                             <tr>
                                 <td>
-                                    <a href="/invoice/{{$invoice->id}}"> @lang('variables.show')</a>
-                                    <a href="/invoice/{{$invoice->id}}/edit">@lang('variables.edit')</a>
+                                    <a href="{{ URL::action('InvoiceController@index')}}/{{$invoice->id}}"> @lang('variables.show')</a>
+                                    <a href="{{ URL::action('InvoiceController@index')}}/{{$invoice->id}}/edit">@lang('variables.edit')</a>
                                     @if(Auth::user()->type=='admin')
-                                        <a href="/invoice/{{$invoice->id}}/delete">@lang('variables.delete')</a>
+                                        <a href="{{ URL::action('InvoiceController@index')}}/{{$invoice->id}}/delete">@lang('variables.delete')</a>
                                     @endif
                                 </td>
                                 <td>{{$invoice->date}}</td>
@@ -77,5 +77,61 @@
 
 @stop
 @section('js')
-    <script src="{{ URL::asset('/js/searchInvoice.js')}}"></script>
+    {{--<script src="{{ URL::asset('/js/searchInvoice.js')}}"></script>--}}
+    <script>
+        $(document).ready(function () {
+
+
+            function sendData()
+            {
+                $.post('{{ URL::action('InvoiceController@search')}}',
+                        {
+                            'query':$('#query').val(),
+                            '_token':$('#_token').val(),
+                            'type':'json'
+                        },
+                        function(result){
+                            var count=result.data.length;
+                            var toShow="";
+                            for(var i=0;i<count;i++)
+                            {
+                                toShow+='<tr>' ;
+                                toShow+='<td>';
+                                toShow+='<a href="{{ URL::action('InvoiceController@index')}}'+result.data[i].id+'">'+'@lang('variables.show')'+'</a>';
+                                toShow+=' <a href="{{ URL::action('InvoiceController@index')}}'+result.data[i].id+'/edit">'+'@lang('variables.edit')'+'</a>';
+                                if($('#U_type').val()=='admin')
+                                {
+                                    toShow+=' <a href="{{ URL::action('InvoiceController@index')}}'+result.data[i].id+'/delete">'+'@lang('variables.delete')'+'</a>';
+                                }
+                                //console.log(result.data[i]);
+                                toShow+='</td>';
+                                toShow+='<td>'+result.data[i].date+'</td>';
+                                //toShow+='<td>'+result.data[i].total+'</td>';
+                                toShow+='<td>';
+                                if(result.data[i].installation=='1')
+                                {
+                                    toShow+='@lang('variables.with_installation')'  ;
+                                }
+                                else
+                                {
+                                    toShow+='@lang('variables.without_installation')';
+                                }
+                                toShow+='</td>';
+                                toShow+='<td>'+result.data[i].id+'</td>';
+                                toShow+='</tr>';
+                            }
+                            $('#result').html(toShow);
+                            $('#render').html(result.render);
+                            //console.log();
+
+                        });
+            }
+            $('#submit').click(function () {
+                sendData()
+            });
+            $('#query').keyup(function () {
+                sendData()
+            });
+        });
+    </script>
 @stop

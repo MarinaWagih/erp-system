@@ -17,7 +17,7 @@
 <nav class="nav-color">
     <div class="container-fluid title3">
         <div class="navbar-header navbar-right">
-            <a class="navbar-brand  dash_link" href="/">
+            <a class="navbar-brand  dash_link" href="{{ URL::action('HomeController@index') }}">
                 <img alt="@lang('variables.system') @lang('variables.clients') " src="">
             </a>
 
@@ -25,7 +25,7 @@
 
         <div class="navbar-header navbar-nav">
 
-            <a href="/auth/logout" class="navbar-brand dash_link">
+            <a href="{{ URL::action('Auth\AuthController@getLogout') }}" class="navbar-brand dash_link">
                 @lang('variables.logout')
             </a>
 
@@ -52,14 +52,15 @@
             </div>
         </a>
 
-        <div id="collapseClient" class="panel-collapse collapse color" role="tabpanel" aria-labelledby="headingClient">
+        <div id="collapseClient" class="panel-collapse collapse color"
+             role="tabpanel" aria-labelledby="headingClient">
             <div class="panel-body title4">
-                <a role="button" href="/client" class="dash_link">
+                <a role="button" href="{{ URL::action('ClientsController@index') }}" class="dash_link">
                     @lang('variables.search')
                     <span class="glyphicon glyphicon-search"></span>
                 </a>
                 <br>
-                <a role="button"  href="/client/create" class="dash_link">
+                <a role="button"  href="{{ URL::action('ClientsController@create') }}" class="dash_link">
 
                     @lang('variables.add') @lang('variables.client')
                     <span class="glyphicon glyphicon-plus"></span>
@@ -84,13 +85,13 @@
 
         <div id="collapseRepresentative" class="panel-collapse collapse color" role="tabpanel" aria-labelledby="headingRepresentative">
             <div class="panel-body title4">
-                <a role="button" href="/representative" class="dash_link">
+                <a role="button" href="{{ URL::action('RepresentativesController@index') }}" class="dash_link">
                     @lang('variables.search')
                     <span class="glyphicon glyphicon-search" ></span>
                 </a>
                 @if(Auth::user()->type !='admin')
                     <br>
-                    <a role="button"  href="/auth/register" class="dash_link">
+                    <a role="button"  href="{{ URL::action('Auth\AuthController@getRegister') }}" class="dash_link">
 
                         @lang('variables.add') @lang('variables.representative1')
                         <span class="glyphicon glyphicon-plus"></span>
@@ -117,14 +118,13 @@
 
         <div id="collapseitem" class="panel-collapse collapse color" role="tabpanel" aria-labelledby="headingitem">
             <div class="panel-body title4">
-                <a role="button" href="/item" class="dash_link">
+                <a role="button" href="{{ URL::action('ItemController@index') }}" class="dash_link">
                     @lang('variables.search')
                     <span class="glyphicon glyphicon-search"></span>
                 </a>
                 <br>
                 @if(Auth::user()->type=='admin')
-                    <a role="button"  href="/item/create" class="dash_link">
-
+                    <a role="button"  href="{{ URL::action('ItemController@create') }}" class="dash_link">
                         @lang('variables.add') @lang('variables.item')
                         <span class="glyphicon glyphicon-plus"></span>
                     </a>
@@ -150,12 +150,12 @@
 
         <div id="collapseinvoice" class="panel-collapse collapse color" role="tabpanel" aria-labelledby="headinginvoice">
             <div class="panel-body title4">
-                <a role="button" href="/invoice" class="dash_link">
+                <a role="button" href="{{ URL::action('InvoiceController@index') }}" class="dash_link">
                     @lang('variables.search')
                     <span class="glyphicon glyphicon-search"></span>
                 </a>
                 <br>
-                <a role="button"  href="/invoice/create" class="dash_link">
+                <a role="button"  href="{{ URL::action('InvoiceController@create') }}" class="dash_link">
 
                     @lang('variables.add') @lang('variables.invoice')
                     <span class="glyphicon glyphicon-plus"></span>
@@ -186,7 +186,7 @@
                         {{--<span class="glyphicon glyphicon-search"></span>--}}
                     {{--</a>--}}
                     <br>
-                    <a role="button"  href="/auth/register" class="dash_link">
+                    <a role="button"  href="{{ URL::action('Auth\AuthController@getRegister') }}" class="dash_link">
 
                         @lang('variables.add') @lang('variables.user')
                         <span class="glyphicon glyphicon-plus"></span>

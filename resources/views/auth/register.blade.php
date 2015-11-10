@@ -53,7 +53,7 @@
 
         @endif
         </div>
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
+        <form class="form-horizontal" role="form" method="POST" action="{{ URL::action('Auth\AuthController@postRegister') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div id="representative_data" >
                 <div class="form-group">

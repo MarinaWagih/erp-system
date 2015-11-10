@@ -44,11 +44,11 @@
                         @foreach($items as $item)
                             <tr>
                                 <td>
-                                    <a href="/item/{{$item->id}}"> @lang('variables.show')</a>
+                                    <a href="{{ URL::action('ItemController@index')}}/{{$item->id}}"> @lang('variables.show')</a>
 
                                     @if(Auth::user()->type=='admin')
-                                        <a href="/item/{{$item->id}}/edit">@lang('variables.edit')</a>
-                                        <a href="/item/{{$item->id}}/delete">@lang('variables.delete')</a>
+                                        <a href="{{ URL::action('ItemController@index')}}/{{$item->id}}/edit">@lang('variables.edit')</a>
+                                        <a href="{{ URL::action('ItemController@index')}}/{{$item->id}}/delete">@lang('variables.delete')</a>
                                     @endif
                                 </td>
                                 <td>{{$item->price_1050}}</td>
@@ -73,5 +73,53 @@
     </div>
 @stop
 @section('js')
-    <script src="{{ URL::asset('js/searchItem.js')}}"></script>
+    {{--<script src="{{ URL::asset('js/searchItem.js')}}"></script>--}}
+    <script>
+        $(document).ready(function () {
+
+
+            function sendData()
+            {
+                $.post('{{ URL::action('ItemController@search')}}',
+                        {
+                            'query':$('#query').val(),
+                            '_token':$('#_token').val(),
+                            'type':'json'
+                        },
+                        function(result){
+                            var count=result.data.length;
+                            var toShow="";
+                            for(var i=0;i<count;i++)
+                            {
+                                toShow+='<tr>' ;
+                                toShow+='<td>';
+                                toShow+='<a href="{{ URL::action('ItemController@index')}}/'+result.data[i].id+'">'+'عرض'+'</a>';
+                                toShow+=' <a href="{{ URL::action('ItemController@index')}}/'+result.data[i].id+'/edit">'+'تعديل'+'</a>';
+                                if($('#U_type').val()=='admin')
+                                {
+                                    toShow+=' <a href="{{ URL::action('ItemController@index')}}/'+result.data[i].id+'/delete">'+'مسح'+'</a>';
+                                }
+                                toShow+='</td>';
+                                toShow+='<td>'+result.data[i].price_1050+'</td>';
+                                toShow+='<td>'+result.data[i].price_1250+'</td>';
+                                toShow+='<td>'+result.data[i].price_1034+'</td>';
+                                toShow+='<td>'+result.data[i].code+'</td>';
+                                toShow+='<td>'+result.data[i].name+'</td>';
+                                toShow+='<td>'+result.data[i].id+'</td>';
+                                toShow+='</tr>';
+                            }
+                            $('#result').html(toShow);
+                            $('#render').html(result.render);
+                            //console.log();
+
+                        });
+            }
+            $('#submit').click(function () {
+                sendData()
+            });
+            $('#query').keyup(function () {
+                sendData()
+            });
+        });
+    </script>
 @stop

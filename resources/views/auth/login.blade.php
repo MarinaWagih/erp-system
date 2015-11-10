@@ -4,11 +4,11 @@
     <link rel="shortcut icon" href="../fav.png">
 
 
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/bootstrap.min.css')}}">
     {{--<link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">--}}
     {{--<link rel="stylesheet" type="text/css" href="../css/ar.css">--}}
     <title> @lang('variables.system') @lang('variables.clients')</title>
-    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css//login.css')}}">
 </head>
 <body>
 <div class="container">
@@ -23,9 +23,12 @@
             @lang('variables.login')
         </h2>
 
-        <form  class="form-horizontal" role="form"  method="POST" action="/auth/login">
-            {!! csrf_field() !!}
+        <form  class="form-horizontal" role="form"  method="POST" action="{{ URL::action('Auth\AuthController@postLogin') }}">
+            {{--{!! csrf_field() !!}--}}
+{{--            {{csrf_token()}}--}}
+            {{--{!! csrf_field() !!}--}}
 
+            <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
             <div class="form-group">
                 <label class="label">@lang('variables.user_name') </label>
                 <br>
