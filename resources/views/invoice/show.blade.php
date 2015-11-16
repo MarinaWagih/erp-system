@@ -12,7 +12,6 @@
 @section('content')
     <button class="btn btn-warning masafa" id="print">@lang('variables.print')</button>
     <div class="wrapper"></div>
-
     <div class="masafa bg-logo" id="content">
 
         {{--===================id&& 2images=========================--}}
@@ -121,47 +120,49 @@
         {{--=====================Items==============================--}}
         {{--========================================================--}}
         <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8">
-                <table class="table table-responsive">
+            {{--<div class="col-lg-0"></div>--}}
+            <div class="col-lg-12">
+                <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>@lang('variables.the_total') @lang('variables.after') @lang('variables.discount')</th>
-                        <th>@lang('variables.price') @lang('variables.after') @lang('variables.discount')</th>
-                        <th>@lang('variables.percentage')  @lang('variables.discount')</th>
-                        <th>@lang('variables.price') @lang('variables.before') @lang('variables.discount')</th>
-                        <th>@lang('variables.quantity')</th>
-                        <th>@lang('variables.image')</th>
-                        <th>@lang('variables.name')</th>
-                        <th>@lang('variables.number')</th>
+                        <th  class="myth">@lang('variables.the_total') @lang('variables.after') @lang('variables.discount')</th>
+                        <th  class="myth">@lang('variables.price') @lang('variables.after') @lang('variables.discount')</th>
+                        <th  class="myth">@lang('variables.percentage')  @lang('variables.discount')</th>
+                        <th  class="myth">@lang('variables.price') @lang('variables.before') @lang('variables.discount')</th>
+                        <th  class="myth">@lang('variables.quantity')</th>
+                        <th  class="myth">@lang('variables.image')</th>
+                        <th  class="myth">@lang('variables.name')</th>
+                        <th  class="myth">@lang('variables.number')</th>
                     </tr>
                     </thead>
                     <tbody id="tableBody">
                     @if(isset($invoice))
                         @foreach($invoice->items as $item)
                             <tr id="{{$item->id}}" class="items_row">
-                               <td>
+                               <td class="td10">
                                     {{($item->pivot->price-($item->pivot->price *$item->pivot->discount_percent)/100)*$item->pivot->quantity }}
                                 </td>
-                                <td>
+                                <td class="td10">
                                     {{$item->pivot->price-($item->pivot->price *$item->pivot->discount_percent)/100  }}
                                 </td>
-                                <td>
+                                <td class="td10">
                                     {{$item->pivot->discount_percent}}
                                 </td>
-                                <td>
+                                <td class="td10">
                                     {{ $item->pivot->price  }}
                                 </td>
-                                <td>
+                                <td class="td10">
                                     {{ $item->pivot->quantity  }}
                                 </td>
-                                <td>
+                                <td class="td10">
                                     <img src="{{URL::asset('images/'.$item->picture)}}" style="height: 50px;width:50px">
                                 </td>
-                                <td>
+                                <td class="td30">
+                                    {{ $item->code  }}
+                                    <br>
                                     {{ $item->name  }}
                                 </td>
-                                <td>
+                                <td class="td10">
                                     {{ $item->id }}
                                 </td>
                             </tr>
@@ -171,7 +172,7 @@
                 </table>
 
             </div>
-            <div class="col-lg-2"></div>
+            {{--<div class="col-lg-1"></div>--}}
         </div>
         {{--========================================================--}}
         {{--========================================================--}}

@@ -178,11 +178,31 @@ input, button{
     /*display: none;*/
     margin: 0 auto;
 }
+.myth{
+    text-align: center !important;
+    font-size: 14px
+}
+.td10{
+    text-align: center ;
+    width: 10%
+
+}
+.td30{
+    text-align: center ;
+    width: 30%;
+    overflow: auto;
+}
 @media print{
    .Dashboard,.nav-color,#print
    {
        visibility: hidden;
+       display: none;
    }
+    body
+    {
+        margin: 0mm 0mm 25mm 25mm;
+        /*margin: 0.0cm 0.0cm 0.25cm 0.25cm;*/
+    }
     .show_img{
         width: 100px;
         height: auto;
@@ -196,6 +216,18 @@ input, button{
     }
     .wrapper{
         position: relative;
+    }
+    .myth{
+        text-align: center !important;
+        font-size: 10px
+    }
+    .td10{
+        text-align: center ;
+        width: 10%
+    }
+    .td30{
+        text-align: center ;
+        width: 30%
     }
     /*.bg_img{display:inline; z-index: -1 ;margin: 0 auto; position: absolute;}*/
     /** {-webkit-print-color-adjust:exact;}*/

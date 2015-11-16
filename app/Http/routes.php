@@ -12,6 +12,13 @@
 */
 //Home Route
 Route::get('/home','HomeController@index');
+//user Routes
+Route::get('/user','HomeController@user_all');
+Route::get('/user/search','HomeController@user_search');
+Route::post('/user/search','HomeController@user_search');
+Route::get('/user/{id}/edit','HomeController@user_edit');
+Route::post('/user/{id}','HomeController@user_update');
+Route::get('/user/{id}/delete','HomeController@user_delete');
 
 //Auth Routes
 

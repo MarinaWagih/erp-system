@@ -181,10 +181,10 @@
 
             <div id="collapseUser" class="panel-collapse collapse color" role="tabpanel" aria-labelledby="headingUser">
                 <div class="panel-body title4">
-                    {{--<a role="button" href="/client">--}}
-                        {{--@lang('variables.search')--}}
-                        {{--<span class="glyphicon glyphicon-search"></span>--}}
-                    {{--</a>--}}
+                    <a role="button" href="{{ URL::action('HomeController@user_all') }}">
+                        @lang('variables.search')
+                        <span class="glyphicon glyphicon-search"></span>
+                    </a>
                     <br>
                     <a role="button"  href="{{ URL::action('Auth\AuthController@getRegister') }}" class="dash_link">
 

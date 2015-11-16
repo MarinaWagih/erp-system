@@ -1,6 +1,6 @@
 @extends('app')
 @section('title')
-    @lang('variables.representatives')
+    @lang('variables.users')
 @stop
 @section('content')
     <div class="row masafa">
@@ -27,51 +27,53 @@
 
             <div class="center">
                 <table class="table table-hover">
-                    <caption class="color_pink title3">@lang('variables.representatives')</caption>
+                    <caption class="color_pink title3">@lang('variables.users')</caption>
                     <thead>
                     <tr>
                         <th>@lang('variables.operations')</th>
-                        {{--<th>@lang('variables.phone')</th>--}}
+                        <th>@lang('variables.type')</th>
+                        <th>@lang('variables.user_name')</th>
                         <th>@lang('variables.name')</th>
                         <th>@lang('variables.number')</th>
                     </tr>
                     </thead>
                     <tbody id="result">
-                    @if(isset($representatives))
-                        @foreach($representatives as $representative)
+                    @if(isset($users))
+                        @foreach($users as $user)
                             <tr>
                                 <td>
-                                    <a href="{{ URL::action('RepresentativesController@index')}}/{{$representative->id}}"> @lang('variables.show')</a>
-                                    <a href="{{ URL::action('RepresentativesController@index')}}/{{$representative->id}}/edit">@lang('variables.edit')</a>
                                     @if(Auth::user()->type=='admin')
-                                        <a href="{{ URL::action('RepresentativesController@index')}}/{{$representative->id}}/delete">@lang('variables.delete')</a>
+                                        <a href="{{ URL::action('HomeController@user_all')}}/{{$user->id}}/edit">@lang('variables.edit')</a>
+                                        <a href="{{ URL::action('HomeController@user_all')}}/{{$user->id}}/delete">@lang('variables.delete')</a>
                                     @endif
                                 </td>
-                                {{--<td>{{$representative->phone}}</td>--}}
-                                <td>{{$representative->name}}</td>
-                                <th scope="row">{{$representative->id}}</th>
+                                <td>{{$user->type=='user'?Lang::get('variables.customer_support'):Lang::get('variables.'.$user->type)}}</td>
+                                <td>{{$user->email}}</td>
+                                <td>{{$user->name}}</td>
+                                <th scope="row">{{$user->id}}</th>
                             </tr>
                         @endforeach
+                    @endif
                     </tbody>
+
                 </table>
                 <div class="center" id="render">
 
-                    {!!$representatives->render()!!}
+                    {!!$users->render()!!}
 
                 </div>
                 <input id="U_type" type="hidden" value="{{Auth::user()->type}}">
-                @endif
+
             </div>
 
     </div>
 @stop
 @section('js')
-    {{--<script src="{{ URL::asset('js/searchRepresentative.js')}}"></script>--}}
     <script>
         $(document).ready(function () {
 
             function sendData() {
-                $.post('{{ URL::action('RepresentativesController@search')}}',
+                $.post('{{ URL::action('HomeController@user_search')}}',
                         {
                             'query':$('#query').val(),
                             '_token':$('#_token').val(),
@@ -82,16 +84,28 @@
                             var toShow="";
                             for(var i=0;i<count;i++)
                             {
+                                var type_in=result.data[i].type;
+                                var type='';
+                                switch (type_in)
+                                {
+                                    case 'user':
+                                        type='خدمة العملاء';
+                                        break;
+                                    case 'admin':
+                                        type='أدمن';
+                                        break;
+                                    case 'representative':
+                                        type='المندوب';
+                                        break;
+
+                                }
                                 toShow+='<tr>' ;
                                 toShow+='<td>';
-                                toShow+='<a href="{{ URL::action('RepresentativesController@index')}}/'+result.data[i].id+'">'+'عرض'+'</a>';
-                                toShow+=' <a href="{{ URL::action('RepresentativesController@index')}}/'+result.data[i].id+'/edit">'+'تعديل'+'</a>';
-                                if($('#U_type').val()=='admin')
-                                {
-                                    toShow+=' <a href="{{ URL::action('RepresentativesController@index')}}/'+result.data[i].id+'/delete">'+'مسح'+'</a>';
-                                }
+                                toShow+=' <a href="{{ URL::action('HomeController@user_all')}}/'+result.data[i].id+'/edit">'+'تعديل'+'</a>';
+                                toShow+=' <a href="{{ URL::action('HomeController@user_all')}}/'+result.data[i].id+'/delete">'+'مسح'+'</a>';
                                 toShow+='</td>';
-                                toShow+='<td>'+result.data[i].phone+'</td>';
+                                toShow+='<td>'+type+'</td>';
+                                toShow+='<td>'+result.data[i].email+'</td>';
                                 toShow+='<td>'+result.data[i].name+'</td>';
                                 toShow+='<td>'+result.data[i].id+'</td>';
                                 toShow+='</tr>';
