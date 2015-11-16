@@ -46,11 +46,14 @@ class ClientsController extends Controller
             $id=Auth::user()->id;
 //            $rep=Representative::where(['user_id'=>$id])->take(1)->get();
 //            dd($rep);
-            $clients=Client::where(['representative_id'=>$id])->paginate($this->pagination_No);
+            $clients=Client::where(['representative_id'=>$id])
+                ->paginate($this->pagination_No)
+                ->setPath(url() . '/client');
         }
         else
         {
-            $clients=Client::paginate($this->pagination_No);
+            $clients=Client::paginate($this->pagination_No)
+                ->setPath(url() . '/client');
         }
         return view('client.all')->with(['clients'=>$clients]);
 
@@ -232,12 +235,13 @@ class ClientsController extends Controller
         $name=$request->get('query');
         if(Auth::user()->type=='representative')
         {
-            $rep=Representative::where(['user_id'=>Auth::user()->id])->take(1)->get();
+//            $rep=Representative::where(['user_id'=>Auth::user()->id])->take(1)->get();
 //            dd(Auth::user()->id);
             $clients = Client::where('representative_id', '=', Auth::user()->id)
             ->where(function($query) use ($name){
                     $query->where('name', 'like', $name . "%")
                         ->orWhere('phone', 'like', '%' .$name . "%")
+                        ->orWhere('mobile', 'like', '%' .$name . "%")
                         ->orWhere('trading_name', 'like', '%' .$name . "%")
                         ->orWhere('trading_address', 'like', '%' . $name . "%");
 
@@ -247,9 +251,11 @@ class ClientsController extends Controller
         else{
             $clients = Client::where('name', 'like', $name . "%")
                         ->orWhere('phone', 'like', '%' .$name . "%")
+                        ->orWhere('mobile', 'like', '%' .$name . "%")
                         ->orWhere('trading_name', 'like', '%' .$name . "%")
                         ->orWhere('trading_address', 'like', '%' . $name . "%")
-                        ->paginate($this->pagination_No);
+                        ->paginate($this->pagination_No)
+                        ->setPath(url() . '/client/search');
         }
 
         $result=$clients->toArray();
@@ -274,7 +280,7 @@ class ClientsController extends Controller
             if(Auth::user()->type=='representative')
             {
                 $id = Auth::user()->id;
-                $rep = Representative::where(['user_id' => $id])->take(1)->get();
+//                $rep = Representative::where(['user_id' => $id])->take(1)->get();
                 $clients=Client::select('id', 'name as text')
                     ->where('name', 'like', $request->get('query') . "%")
                     ->where('representative_id','=',$id)

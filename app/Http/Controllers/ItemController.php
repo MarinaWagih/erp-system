@@ -38,7 +38,8 @@ class ItemController extends Controller
     {
         //
 
-        $items=Item::paginate($this->pagination_No);
+        $items=Item::paginate($this->pagination_No)
+            ->setPath(url() . '/item');
         return view('item.all')->with(['items'=>$items]);
     }
 
@@ -162,9 +163,10 @@ class ItemController extends Controller
      */
     public function search(Request $request)
     {
-        $items = Item::where('name', 'like', $request->get('query') . "%")
+        $items = Item::where('name', 'like', "%".$request->get('query') . "%")
             ->orWhere('code', 'like', '%'.$request->get('query')."%")
-            ->paginate($this->pagination_No);
+            ->paginate($this->pagination_No)
+            ->setPath(url() . '/item/search');
         $result=$items->toArray();
         $result['render']=$items->render();
         if($request->get('type')=='json')
@@ -183,9 +185,9 @@ class ItemController extends Controller
         if($request->get('query')!==null) {
          $items =
              Item::select('id', 'name as text','picture',$price_type.' as price' )
-                ->where('name', 'like', $request->get('query') . "%")
-                ->orwhere('id', 'like', $request->get('query') . "%")
-                ->get();
+                ->where('name', 'like', "%".$request->get('query') . "%")
+                 ->orwhere('code', 'like', "%".$request->get('query') . "%")
+                 ->get();
             return response()->json($items);
         }
         return response()->json([]);

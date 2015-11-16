@@ -30,7 +30,9 @@ class RepresentativesController extends Controller
     public function index()
     {
         //
-        $representatives=User::where('type','representative')->paginate($this->pagination_No);
+        $representatives=User::where('type','representative')
+            ->paginate($this->pagination_No)
+            ->setPath(url() . '/representative');
         return view('representative.all')->with(['representatives'
                                                     =>$representatives]);
     }
@@ -116,7 +118,7 @@ class RepresentativesController extends Controller
         $representative = User::find($id);
         if ($representative) {
             $representative->name = $request->get('name');
-            $representative->phone = $request->get('phone');
+//            $representative->phone = $request->get('phone');
             $representative->save();
             return redirect('representative/' . $representative->id);
         } else {
@@ -149,7 +151,8 @@ class RepresentativesController extends Controller
                     $query->where('name', 'like', $name . "%")
                         ->orWhere('phone', 'like', '%' .$name . "%");
                 })
-            ->paginate($this->pagination_No);
+            ->paginate($this->pagination_No)
+            ->setPath(url() . '/representative/search');
         $result=$representatives->toArray();
         $result['render']=$representatives->render();
         if($request->get('type')=='json')

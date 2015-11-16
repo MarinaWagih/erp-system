@@ -114,7 +114,7 @@
                 </div>
                 <div class="form-group" id="price">
                     {!! Form::label('price',$price) !!}
-                    {!! Form::input('number','price',0,['class'=>'form-control','id'=>'item_price','min'=>'0','step'=>"0.1",'disabledse']) !!}
+                    {!! Form::input('number','price',0,['class'=>'form-control','id'=>'item_price','min'=>'0','step'=>"0.1",'disabled']) !!}
                 </div>
                 <div class="form-group">
 
@@ -130,7 +130,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default"
                         data-dismiss="modal">
-                    @lang('variables.end')
+                    @lang('variables.cancel')
                 </button>
                 <button type="button" class="btn color" id="item_add_end">
                     @lang('variables.adding') @lang('variables.and') @lang('variables.end')

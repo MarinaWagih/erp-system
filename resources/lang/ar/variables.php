@@ -4,6 +4,7 @@ return [
 
     'admin' => 'أدمن',
     'user'     => 'مستخدم',
+    'customer_support'     => 'خدمة العملاء',
     'new_user'=>'مستخدم جديد',
     'name'=>'الاسم',
     'user_name'=>'اسم المستحدم',

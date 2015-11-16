@@ -54,7 +54,7 @@
                         <td> @lang('variables.address')  @lang('variables.client')</td>
                     </tr>
                     <tr class="right">
-                        <td >{{$invoice->client->phone}}</td>
+                        <td >{{$invoice->client->mobile}}</td>
                         <td> @lang('variables.mobile')  @lang('variables.client')</td>
                     </tr>
                     <tr class="right">

@@ -46,11 +46,13 @@ class InvoiceController extends Controller
 //            $rep = Representative::where(['user_id' => $id])->take(1)->get();
             $invoices = Invoice::where('clients.representative_id','=',$id)
                 ->join('clients','clients.id','=','invoices.client_id')
-                ->paginate($this->pagination_No);
+                ->paginate($this->pagination_No)
+                ->setPath(url() . '/invoice');
         }
         else
         {
-            $invoices = Invoice::paginate($this->pagination_No);
+            $invoices = Invoice::paginate($this->pagination_No)
+                ->setPath(url() . '/invoice');
         }
 
         return view('invoice.all')->with(['invoices' => $invoices]);
@@ -145,13 +147,7 @@ class InvoiceController extends Controller
             {
                 if($invoice->client->representative_id==$id)
                 {
-//                    $id = Auth::user()->id;
-//                    $rep = Representative::where(['user_id' => $id])
-//                       ->take(1)->get();
-//                    $clients=Client::where('representative_id','=',$rep[0]->id)
-//                        ->where('id','!=',$invoice->client->id)->get();
-//                    dd($clients);
-                    return view('invoice.edit')->with(['invoice' => $invoice]);
+                     return view('invoice.edit')->with(['invoice' => $invoice]);
                 }
                 else
                 {
@@ -224,13 +220,15 @@ class InvoiceController extends Controller
                 ->where('invoices.id','like',$request->get('query')."%")
                 ->orWhere('invoices.date','like',$request->get('query')."%")
                 ->join('clients','clients.id','=','invoices.client_id')
-                ->paginate($this->pagination_No);
+                ->paginate($this->pagination_No)
+                ->setPath(url() . '/invoice/search');
         }
         else
         {
             $invoices =Invoice::where('id','like',$request->get('query')."%")
                 ->orWhere('date','like',$request->get('query')."%")
-                ->paginate($this->pagination_No);
+                ->paginate($this->pagination_No)
+                ->setPath(url() . '/invoice/search');
         }
 
         $result = $invoices->toArray();

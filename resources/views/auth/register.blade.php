@@ -61,10 +61,10 @@
                     <input type="text" class="form-control" name="name" value="" placeholder="@lang('variables.write') @lang('variables.name')">
                     {{--{!! Form::text('name',null,['class'=>'form-control','placeholder'=>$write.' '.$name ]) !!}--}}
                 </div>
-                <div class="form-group">
-                    <label for="type">@lang('variables.phone')</label>
-                    <input type="text" class="form-control" name="phone" value="" placeholder="@lang('variables.write') @lang('variables.phone')">
-                </div>
+                {{--<div class="form-group">--}}
+                    {{--<label for="type">@lang('variables.phone')</label>--}}
+                    {{--<input type="text" class="form-control" name="phone" value="" placeholder="@lang('variables.write') @lang('variables.phone')">--}}
+                {{--</div>--}}
             </div>
             <div class="form-group">
                 <label for="email">@lang('variables.user_name')</label>
@@ -92,7 +92,7 @@
                     <label for="type">@lang('variables.type')</label>
                     <select name="type" class="form-control" id="type">
                         <option value="admin">@lang('variables.admin')</option>
-                        <option value="user" selected>@lang('variables.user')</option>
+                        <option value="user" selected>@lang('variables.customer_support')</option>
                         <option value="representative">@lang('variables.representative1')</option>
                     </select>
                 @else
