@@ -59,7 +59,6 @@
                 <div class="form-group">
                     <label for="type">@lang('variables.name')</label>
                     <input type="text" class="form-control" name="name" value="" placeholder="@lang('variables.write') @lang('variables.name')">
-                    {{--{!! Form::text('name',null,['class'=>'form-control','placeholder'=>$write.' '.$name ]) !!}--}}
                 </div>
                 {{--<div class="form-group">--}}
                     {{--<label for="type">@lang('variables.phone')</label>--}}

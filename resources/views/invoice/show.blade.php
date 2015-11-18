@@ -19,7 +19,6 @@
         <div class="row">
             <div class="left first">
                 <br>
-                <br>
                 <p class="title4">
                     {{$invoice->id}} : @lang('variables.number1') @lang('variables.show')
                 </p>
@@ -116,7 +115,6 @@
         </div>
         {{--========================================================--}}
         {{--========================================================--}}
-        <br>
         {{--=====================Items==============================--}}
         {{--========================================================--}}
         <div class="row">
@@ -132,12 +130,12 @@
                         <th  class="myth">@lang('variables.quantity')</th>
                         <th  class="myth">@lang('variables.image')</th>
                         <th  class="myth">@lang('variables.name')</th>
-                        <th  class="myth">@lang('variables.number')</th>
+                        {{--<th  class="myth">@lang('variables.number')</th>--}}
                     </tr>
                     </thead>
                     <tbody id="tableBody">
                     @if(isset($invoice))
-                        @foreach($invoice->items as $item)
+                        @foreach($invoice->items as $key=>$item)
                             <tr id="{{$item->id}}" class="items_row">
                                <td class="td10">
                                     {{($item->pivot->price-($item->pivot->price *$item->pivot->discount_percent)/100)*$item->pivot->quantity }}
@@ -155,17 +153,25 @@
                                     {{ $item->pivot->quantity  }}
                                 </td>
                                 <td class="td10">
-                                    <img src="{{URL::asset('images/'.$item->picture)}}" style="height: 50px;width:50px">
+                                    @if($item->picture!='')
+                                    <img src="{{URL::asset('images/'.$item->picture)}}" class="td10-image">
+                                    {{--@else--}}
+                                        {{--<span class="glyphicon glyphicon-ban-circle"></span>--}}
+                                    @endif
                                 </td>
                                 <td class="td30">
                                     {{ $item->code  }}
                                     <br>
                                     {{ $item->name  }}
                                 </td>
-                                <td class="td10">
-                                    {{ $item->id }}
-                                </td>
+                                {{--<td class="td10">--}}
+                                    {{--{{ $item->id }}--}}
+                                {{--</td>--}}
                             </tr>
+                            @if((($key+1)%7==0)&&(($key+1)!==count($invoice->items)))
+                                <div>
+                                </div>
+                            @endif
                         @endforeach
                     @endif
                     </tbody>
@@ -176,12 +182,11 @@
         </div>
         {{--========================================================--}}
         {{--========================================================--}}
-        <br>
         {{--===================calculations=========================--}}
         {{--========================================================--}}
         <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-9">
+            {{--<div class="col-lg-1"></div>--}}
+            <div class="col-lg-12">
             <div class="row final_calc">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                 <div class="checkbox">
@@ -193,20 +198,20 @@
                     @endif
 
                 </div>
-                <span id="Total_after_taxes">{{$invoice->total_after_sales_tax}}</span>
+                <span id="Total_after_taxes" class="right">{{$invoice->total_after_sales_tax}}</span>
             </div>
             {{--========================================================--}}
             {{--========================================================--}}
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                 <div class="row">
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                        <span id="additional_discount_value">
+                        <span id="additional_discount_value" class="right">
                             {{$invoice-> additional_discount_percentage}}%
                         </span>
 
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                        <span class="color_dark title5">
+                        <span class="color_dark title5 right" >
                             @lang('variables.percentage')  @lang('variables.discount') @lang('variables.additional')
                         </span>
                     </div>
@@ -215,28 +220,28 @@
                 <div class="row">
 
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                        <span id="additional_discount_value">
+                        <span id="additional_discount_value" class="right">
                           {{$invoice->totalAfterDiscount()*($invoice-> additional_discount_percentage/100)}}
                         </span>
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                        <span class="color_dark title5">
+                        <span class="color_dark title5 right">
                             @lang('variables.value')  @lang('variables.discount') @lang('variables.additional')
                          </span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                        <span id="Total_additional_discount">
+                        <span id="Total_additional_discount" class="right">
                             {{$invoice->totalAfterDiscount()-($invoice->totalAfterDiscount()*($invoice-> additional_discount_percentage/100))}}
                         </span>
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                <span class="color_dark title5">
-                    @lang('variables.total') @lang('variables.price')
-                    @lang('variables.after')  @lang('variables.discount')
-                    @lang('variables.additional')
-                </span>
+                        <span class="color_dark title5 right">
+                            @lang('variables.the_total')
+                            @lang('variables.after')  @lang('variables.discount')
+                            @lang('variables.additional')
+                        </span>
                     </div>
                 </div>
             </div>
@@ -245,10 +250,10 @@
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                 <div class="row">
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                        <span id="Total_invoice_before_discount">{{$invoice->totalBeforeDiscount()}}</span>
+                        <span id="Total_invoice_before_discount" class="right">{{$invoice->totalBeforeDiscount()}}</span>
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                        <span class="color_dark title5">
+                        <span class="color_dark title5 right">
                             @lang('variables.total') @lang('variables.price') @lang('variables.before') @lang('variables.discount')
                         </span>
                     </div>
@@ -257,12 +262,12 @@
                 <div class="row">
 
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                        <span id="Total_invoice_discount">
+                        <span id="Total_invoice_discount" class="right">
                            {{$invoice->totalDiscount()}}
                         </span>
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                        <span class="color_dark title5">
+                        <span class="color_dark title5 right" >
                             @lang('variables.total') @lang('variables.discount')
                         </span>
                     </div>
@@ -270,34 +275,34 @@
                 <div class="row">
 
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                        <span id="Total_invoice_after_discount">
+                        <span id="Total_invoice_after_discount" class="right">
                             {{$invoice->totalAfterDiscount()}}
                         </span>
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                <span class="color_dark title5">
-                    @lang('variables.total') @lang('variables.price') @lang('variables.after') @lang('variables.discount')
-                </span>
+                        <span class="color_dark title5 right">
+                            @lang('variables.total') @lang('variables.price') @lang('variables.after') @lang('variables.discount')
+                        </span>
                     </div>
                 </div>
             </div>
             </div>
         </div>
-            <div class="col-lg-1"></div>
+            {{--<div class="col-lg-1"></div>--}}
         </div>
         {{--========================================================--}}
         {{--========================================================--}}
         <div class="row">
             <div class="col-xs-3">
-                <p class="title5">
+                <p class="title5 right">
                     توقيع العميل
                 </p>
             </div>
             <div class="col-xs-9">
-                    <p class="title5">
+                    <p class="title5 right">
                         نرجو أن يحوز العرض قبولكم
                     </p>
-                    <p class="title5">
+                    <p class="title5 right">
                         لا يعتد بهذا المستند إلا بأصل الفتورة معتمدة و مختومة من الشركة
                     </p>
             </div>
@@ -309,4 +314,4 @@
 {{--    <script src="{{URL::asset('js/jquery-1.6.2.min.js')}}"></script>--}}
     <script src="{{URL::asset('js/jquery.PrintArea.js_4.js')}}"></script>
     <script src="{{URL::asset('js/core.js')}}"></script>
-    @stop
+@stop

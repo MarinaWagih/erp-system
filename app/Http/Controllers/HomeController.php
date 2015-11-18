@@ -20,6 +20,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('admin',['except'=>['index']]);
 
     }
     /**
@@ -93,12 +94,20 @@ class HomeController extends Controller
      */
     public function user_update(Request $request,$id)
     {
-        $this->validate($request,['name'=>'required',
+        $this->validate($request,[
+//            'name'=>'required',
             'email'=>'required'
         ]);
         $user = User::find($id);
         if ($user) {
-            $user->update($request->all());
+            $new_data=
+                [
+                'email' => $request->get('email'),
+                'password' =>$request->get('password')!==null?bcrypt($request->get('password')):$user->password,
+                'type'=>$request->get('type')!==''?$request->get('type'):$user->type,
+                'name' => $request->get('name')!==''?$request->get('name'):$user->email,
+                ];
+            $user->update($new_data);
             return redirect('/user');
         } else {
             return view('errors.Unauth')->with(['msg' => 'variables.not_found']);

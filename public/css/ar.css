@@ -189,8 +189,12 @@ input, button{
 }
 .td30{
     text-align: center ;
-    width: 30%;
+    width: 40%;
     overflow: auto;
+}
+.td10-image{
+    height: 50px;
+    width:50px
 }
 @media print{
    .Dashboard,.nav-color,#print
@@ -219,7 +223,7 @@ input, button{
     }
     .myth{
         text-align: center !important;
-        font-size: 10px
+        font-size: 10px;
     }
     .td10{
         text-align: center ;
@@ -227,7 +231,16 @@ input, button{
     }
     .td30{
         text-align: center ;
-        width: 30%
+        width: 40%;
+        font-size: 3mm;
+    }
+    .right{
+        text-align:right;
+        font-size: 3mm;
+    }
+    .td10-image{
+        height:10mm;
+        width:10mm;
     }
     /*.bg_img{display:inline; z-index: -1 ;margin: 0 auto; position: absolute;}*/
     /** {-webkit-print-color-adjust:exact;}*/

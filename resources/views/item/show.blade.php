@@ -5,7 +5,12 @@
 @section('content')
     <div class="row">
         <div class="col-lg-4">
-            <img src="{{URL::asset('images/'.$item->picture)}}" class="item_image"/>
+            {{--<img src="{{URL::asset('images/'.$item->picture)}}" class="item_image"/>--}}
+            @if($item->picture!='')
+                <img src="{{URL::asset('images/'.$item->picture)}}" class="item_image">
+                {{--@else--}}
+                {{--<span class="glyphicon glyphicon-ban-circle"></span>--}}
+            @endif
         </div>
         <div class="col-lg-8">
             <h1>
