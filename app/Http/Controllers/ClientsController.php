@@ -88,7 +88,7 @@ class ClientsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,['name'=>'required',
-                            'phone'=>'required|unique:clients|min:7',
+                            'mobile'=>'required|unique:clients|min:11',
                             'representative_id'=>'required']);
         $client = new Client();
         $client->create($request->all());
@@ -184,7 +184,7 @@ class ClientsController extends Controller
         $this->validate($request,[
             'name'=>'required',
 //            'address'=>'required',
-            'phone'=>'required|min:7',
+            'mobile'=>'required|min:11',
 //            'mobile'=>'required|min:11',
 //            'trading_name'=>'required',
 //            'trading_address'=>'required',

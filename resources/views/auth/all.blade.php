@@ -30,27 +30,27 @@
                     <caption class="color_pink title3">@lang('variables.users')</caption>
                     <thead>
                     <tr>
-                        <th>@lang('variables.operations')</th>
-                        <th>@lang('variables.type')</th>
-                        <th>@lang('variables.user_name')</th>
-                        <th>@lang('variables.name')</th>
-                        <th>@lang('variables.number')</th>
+                        <th class="myth">@lang('variables.operations')</th>
+                        <th class="myth">@lang('variables.type')</th>
+                        <th class="myth">@lang('variables.user_name')</th>
+                        <th class="myth">@lang('variables.name')</th>
+                        {{--<th>@lang('variables.number')</th>--}}
                     </tr>
                     </thead>
                     <tbody id="result">
                     @if(isset($users))
                         @foreach($users as $user)
                             <tr>
-                                <td>
+                                <td class="td20">
                                     @if(Auth::user()->type=='admin')
                                         <a href="{{ URL::action('HomeController@user_all')}}/{{$user->id}}/edit">@lang('variables.edit')</a>
                                         <a href="{{ URL::action('HomeController@user_all')}}/{{$user->id}}/delete">@lang('variables.delete')</a>
                                     @endif
                                 </td>
-                                <td>{{$user->type=='user'?Lang::get('variables.customer_support'):Lang::get('variables.'.$user->type)}}</td>
-                                <td>{{$user->email}}</td>
-                                <td>{{$user->name}}</td>
-                                <th scope="row">{{$user->id}}</th>
+                                <td  class="td20">{{$user->type=='user'?Lang::get('variables.customer_support'):Lang::get('variables.'.$user->type)}}</td>
+                                <td  class="td20">{{$user->email}}</td>
+                                <td  class="td20">{{$user->name}}</td>
+                                {{--<th scope="row">{{$user->id}}</th>--}}
                             </tr>
                         @endforeach
                     @endif
@@ -100,14 +100,14 @@
 
                                 }
                                 toShow+='<tr>' ;
-                                toShow+='<td>';
+                                toShow+='<td  class="td20">';
                                 toShow+=' <a href="{{ URL::action('HomeController@user_all')}}/'+result.data[i].id+'/edit">'+'تعديل'+'</a>';
                                 toShow+=' <a href="{{ URL::action('HomeController@user_all')}}/'+result.data[i].id+'/delete">'+'مسح'+'</a>';
                                 toShow+='</td>';
-                                toShow+='<td>'+type+'</td>';
-                                toShow+='<td>'+result.data[i].email+'</td>';
-                                toShow+='<td>'+result.data[i].name+'</td>';
-                                toShow+='<td>'+result.data[i].id+'</td>';
+                                toShow+='<td  class="td20">'+type+'</td>';
+                                toShow+='<td  class="td20">'+result.data[i].email+'</td>';
+                                toShow+='<td  class="td20">'+result.data[i].name+'</td>';
+//                                toShow+='<td>'+result.data[i].id+'</td>';
                                 toShow+='</tr>';
                             }
                             $('#result').html(toShow);

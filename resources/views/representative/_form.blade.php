@@ -31,10 +31,10 @@
     {!! Form::label('name',$name) !!}
     {!! Form::text('name',null,['class'=>'form-control','placeholder'=>$write.' '.$name ]) !!}
 </div>
-<div class="form-group">
-    {!! Form::label('phone',$phone) !!}
-    {!! Form::text('phone',null,['class'=>'form-control','placeholder'=>$write.' '.$phone]) !!}
-</div>
+{{--<div class="form-group">--}}
+    {{--{!! Form::label('phone',$phone) !!}--}}
+    {{--{!! Form::text('phone',null,['class'=>'form-control','placeholder'=>$write.' '.$phone]) !!}--}}
+{{--</div>--}}
 <div class="form-group">
     {!! Form::submit($submitText,['class'=>'btn color']) !!}
 </div>

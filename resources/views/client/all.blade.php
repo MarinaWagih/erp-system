@@ -33,11 +33,11 @@
                     <caption class="color_pink title3">@lang('variables.clients')</caption>
                     <thead>
                     <tr>
-                        <th>@lang('variables.operations')</th>
-                        <th>@lang('variables.trading_name')</th>
-                        <th>@lang('variables.phone')</th>
-                        <th>@lang('variables.name')</th>
-                        <th>@lang('variables.number')</th>
+                        <th class="myth">@lang('variables.operations')</th>
+                        <th class="myth">@lang('variables.trading_name')</th>
+                        <th class="myth">@lang('variables.phone')</th>
+                        <th class="myth">@lang('variables.name')</th>
+                        {{--<th>@lang('variables.number')</th>--}}
 
                     </tr>
                     </thead>
@@ -55,10 +55,10 @@
                                         <a href="{{ URL::action('ClientsController@index')}}/{{$client->id}}/delete">@lang('variables.delete')</a>
                                     @endif
                                 </td>
-                                <td>{{$client->trading_name}}</td>
-                                <td>{{$client->phone}}</td>
-                                <td>{{$client->name}}</td>
-                                <th scope="row">{{$client->id}}</th>
+                                <td class="td30_true">{{$client->trading_name}}</td>
+                                <td class="td30_true">{{$client->phone}}</td>
+                                <td class="td30_true">{{$client->name}}</td>
+{{--                                <th scope="row">{{$client->id}}</th>--}}
                             </tr>
                         @endforeach
                     </tbody>
@@ -75,7 +75,7 @@
 
 @stop
 @section('js')
-    <script src="{{ URL::asset('/js/searchClient.js')}}"></script>
+
     <script>
         $(document).ready(function () {
 
@@ -105,10 +105,10 @@
                                     toShow+=' <a href="'+link_delete+'">'+"@lang('variables.delete')"+'</a>';
                                 }
                                 toShow+='</td>';
-                                toShow+='<td>'+result.data[i].trading_name+'</td>';
-                                toShow+='<td>'+result.data[i].phone+'</td>';
-                                toShow+='<td>'+result.data[i].name+'</td>';
-                                toShow+='<td>'+result.data[i].id+'</td>';
+                                toShow+='<td class="td30_true">'+result.data[i].trading_name+'</td>';
+                                toShow+='<td class="td30_true">'+result.data[i].phone+'</td>';
+                                toShow+='<td class="td30_true">'+result.data[i].name+'</td>';
+//                                toShow+='<td>'+result.data[i].id+'</td>';
                                 toShow+='</tr>';
                             }
                             $('#result').html(toShow);

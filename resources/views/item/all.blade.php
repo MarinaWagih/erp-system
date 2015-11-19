@@ -26,37 +26,45 @@
     <div class="row">
 
             <div class="center">
-                <table class="table table-hover">
+                <table class="table table-hover" >
                     <caption class="color_pink title3">@lang('variables.items')</caption>
                     <thead>
                     <tr>
-                        <th>@lang('variables.operations')</th>
-                        <th>@lang('variables.price') 1050</th>
-                        <th>@lang('variables.price') 1250</th>
-                        <th>@lang('variables.price') 1034</th>
-                        <th>@lang('variables.code')</th>
-                        <th>@lang('variables.name')</th>
-                        <th>@lang('variables.number')</th>
+                        <th class="myth">@lang('variables.operations')</th>
+                        @if(Auth::user()->type=='admin')
+                            <th class="myth">A 31 @lang('variables.price') </th>
+                            <th class="myth">B 32 @lang('variables.price') </th>
+                        @endif
+                        <th class="myth">@lang('variables.price') 1050</th>
+                        <th class="myth">@lang('variables.price') 1250</th>
+                        <th class="myth">@lang('variables.price') 1034</th>
+                        <th class="myth">@lang('variables.code')</th>
+                        <th class="myth">@lang('variables.name')</th>
+                        {{--<th>@lang('variables.number')</th>--}}
                     </tr>
                     </thead>
                     <tbody id="result">
                     @if(isset($items))
                         @foreach($items as $item)
                             <tr>
-                                <td>
+                                <td class="td20">
                                     <a href="{{ URL::action('ItemController@index')}}/{{$item->id}}"> @lang('variables.show')</a>
 
                                     @if(Auth::user()->type=='admin')
-                                        <a href="{{ URL::action('ItemController@index')}}/{{$item->id}}/edit">@lang('variables.edit')</a>
+                                        <a href="{{ URL::action('ItemController@index')}}/{{$item->id}}/edit" >@lang('variables.edit')</a>
                                         <a href="{{ URL::action('ItemController@index')}}/{{$item->id}}/delete">@lang('variables.delete')</a>
                                     @endif
                                 </td>
-                                <td>{{$item->price_1050}}</td>
-                                <td>{{$item->price_1250}}</td>
-                                <td>{{$item->price_1034}}</td>
-                                <td>{{$item->code}}</td>
-                                <td>{{$item->name}}</td>
-                                <th scope="row">{{$item->id}}</th>
+                                @if(Auth::user()->type=='admin')
+                                    <td class="td10">{{$item->price_31_a}}</td>
+                                    <td class="td10">{{$item->price_32_b}}</td>
+                                @endif
+                                <td class="td10">{{$item->price_1050}}</td>
+                                <td class="td10">{{$item->price_1250}}</td>
+                                <td class="td10">{{$item->price_1034}}</td>
+                                <td class="td10">{{$item->code}}</td>
+                                <td class="td20">{{$item->name}}</td>
+                                {{--<th scope="row">{{$item->id}}</th>--}}
                             </tr>
                         @endforeach
                     </tbody>
@@ -92,7 +100,7 @@
                             for(var i=0;i<count;i++)
                             {
                                 toShow+='<tr>' ;
-                                toShow+='<td>';
+                                toShow+='<td class="td20">';
                                 toShow+='<a href="{{ URL::action('ItemController@index')}}/'+result.data[i].id+'">'+'عرض'+'</a>';
                                 toShow+=' <a href="{{ URL::action('ItemController@index')}}/'+result.data[i].id+'/edit">'+'تعديل'+'</a>';
                                 if($('#U_type').val()=='admin')
@@ -100,12 +108,17 @@
                                     toShow+=' <a href="{{ URL::action('ItemController@index')}}/'+result.data[i].id+'/delete">'+'مسح'+'</a>';
                                 }
                                 toShow+='</td>';
-                                toShow+='<td>'+result.data[i].price_1050+'</td>';
-                                toShow+='<td>'+result.data[i].price_1250+'</td>';
-                                toShow+='<td>'+result.data[i].price_1034+'</td>';
-                                toShow+='<td>'+result.data[i].code+'</td>';
-                                toShow+='<td>'+result.data[i].name+'</td>';
-                                toShow+='<td>'+result.data[i].id+'</td>';
+                                if($('#U_type').val()=='admin')
+                                {
+                                    toShow+='<td class="td10">'+result.data[i].price_31_a+'</td>';
+                                    toShow+='<td class="td10">'+result.data[i].price_32_b+'</td>';
+                                }
+                                toShow+='<td class="td10">'+result.data[i].price_1050+'</td>';
+                                toShow+='<td class="td10">'+result.data[i].price_1250+'</td>';
+                                toShow+='<td class="td10">'+result.data[i].price_1034+'</td>';
+                                toShow+='<td class="td10">'+result.data[i].code+'</td>';
+                                toShow+='<td class="td20">'+result.data[i].name+'</td>';
+//                                toShow+='<td>'+result.data[i].id+'</td>';
                                 toShow+='</tr>';
                             }
                             $('#result').html(toShow);

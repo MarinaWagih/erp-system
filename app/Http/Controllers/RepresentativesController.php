@@ -113,7 +113,7 @@ class RepresentativesController extends Controller
     {
         //
         $this->validate($request,['name'=>'required',
-            'phone'=>'required|min:11'
+//            'phone'=>'required|min:11'
         ]);
         $representative = User::find($id);
         if ($representative) {

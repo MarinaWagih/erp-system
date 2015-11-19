@@ -153,6 +153,12 @@
                     boardcalc();
                 });
             }
+            function resetItemPopup()
+            {
+                $('#quantity').val('0');
+                $('#item_price').val('0');
+                $('#items_list').val('');
+            }
             //date picker
             $(function () {
                 $("#date").datepicker({
@@ -387,6 +393,7 @@
                     }
 
                     $('#items').val(JSON.stringify(item_to_add));
+                    resetItemPopup();
                 }
                 else
                 {
@@ -504,6 +511,7 @@
                     }
 
                     $('#items').val(JSON.stringify(item_to_add));
+                    resetItemPopup();
                     $('#itemFormModel').modal('hide');
                 }
                 else

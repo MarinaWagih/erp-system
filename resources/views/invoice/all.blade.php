@@ -29,11 +29,11 @@
                     <caption class="color_pink title3">@lang('variables.invoices')</caption>
                     <thead>
                     <tr>
-                        <th>@lang('variables.operations')</th>
-                        <th>@lang('variables.date')</th>
+                        <th class="myth">@lang('variables.operations')</th>
+                        <th class="myth">@lang('variables.date')</th>
 {{--                        <th>@lang('variables.total')</th>--}}
-                        <th>@lang('variables.invoice')</th>
-                        <th>@lang('variables.number')</th>
+                        <th class="myth">@lang('variables.invoice')</th>
+                        <th class="myth">@lang('variables.number')</th>
 
                     </tr>
                     </thead>
@@ -42,23 +42,23 @@
                         {{--{{$invoices}}--}}
                         @foreach($invoices as $invoice)
                             <tr>
-                                <td>
+                                <td class="td20">
                                     <a href="{{ URL::action('InvoiceController@index')}}/{{$invoice->id}}"> @lang('variables.show')</a>
                                     <a href="{{ URL::action('InvoiceController@index')}}/{{$invoice->id}}/edit">@lang('variables.edit')</a>
                                     @if(Auth::user()->type=='admin')
                                         <a href="{{ URL::action('InvoiceController@index')}}/{{$invoice->id}}/delete">@lang('variables.delete')</a>
                                     @endif
                                 </td>
-                                <td>{{$invoice->date}}</td>
+                                <td class="td20">{{$invoice->date}}</td>
 {{--                                <td>{{$invoice->total()}}</td>--}}
-                                <td>
+                                <td class="td20">
                                     @if($invoice->installation=='1')
                                         @lang('variables.with_installation')
                                     @else
                                         @lang('variables.without_installation')
                                     @endif
-                                </td>
-                                <th scope="row">{{$invoice->id}}</th>
+                                </td >
+                                <th scope="row" class="td20">{{$invoice->id}}</th>
                             </tr>
                         @endforeach
                     @endif
@@ -96,7 +96,7 @@
                             for(var i=0;i<count;i++)
                             {
                                 toShow+='<tr>' ;
-                                toShow+='<td>';
+                                toShow+='<td class="td20">';
                                 toShow+='<a href="{{ URL::action('InvoiceController@index')}}'+result.data[i].id+'">'+'@lang('variables.show')'+'</a>';
                                 toShow+=' <a href="{{ URL::action('InvoiceController@index')}}'+result.data[i].id+'/edit">'+'@lang('variables.edit')'+'</a>';
                                 if($('#U_type').val()=='admin')
@@ -105,9 +105,9 @@
                                 }
                                 //console.log(result.data[i]);
                                 toShow+='</td>';
-                                toShow+='<td>'+result.data[i].date+'</td>';
+                                toShow+='<td class="td20">'+result.data[i].date+'</td>';
                                 //toShow+='<td>'+result.data[i].total+'</td>';
-                                toShow+='<td>';
+                                toShow+='<td class="td20">';
                                 if(result.data[i].installation=='1')
                                 {
                                     toShow+='@lang('variables.with_installation')'  ;
@@ -117,7 +117,7 @@
                                     toShow+='@lang('variables.without_installation')';
                                 }
                                 toShow+='</td>';
-                                toShow+='<td>'+result.data[i].id+'</td>';
+                                toShow+='<td class="td20">'+result.data[i].id+'</td>';
                                 toShow+='</tr>';
                             }
                             $('#result').html(toShow);

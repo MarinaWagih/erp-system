@@ -10,6 +10,10 @@
     @lang('variables.invoice')  @lang('variables.number1')  {{$invoice->id}}
 @stop
 @section('content')
+   <a href="{{ URL::action('InvoiceController@index')}}/{{$invoice->id}}/edit" class="btn color masafa" role="button">@lang('variables.edit')</a>
+    @if(Auth::user()->type=='admin')
+        <a href="{{ URL::action('InvoiceController@index')}}/{{$invoice->id}}/delete" class="btn btn-danger masafa" ole="button">@lang('variables.delete')</a>
+    @endif
     <button class="btn btn-warning masafa" id="print">@lang('variables.print')</button>
     <div class="wrapper"></div>
     <div class="masafa bg-logo" id="content">
@@ -120,7 +124,7 @@
         <div class="row">
             {{--<div class="col-lg-0"></div>--}}
             <div class="col-lg-12">
-                <table class="table table-bordered">
+                <table class="table table-bordered at_print" >
                     <thead>
                     <tr>
                         <th  class="myth">@lang('variables.the_total') @lang('variables.after') @lang('variables.discount')</th>
@@ -169,8 +173,35 @@
                                 {{--</td>--}}
                             </tr>
                             @if((($key+1)%7==0)&&(($key+1)!==count($invoice->items)))
-                                <div>
-                                </div>
+                                <tr class="items_row_break">
+                                    <td class="td10">
+                                        {{($item->pivot->price-($item->pivot->price *$item->pivot->discount_percent)/100)*$item->pivot->quantity }}
+                                    </td>
+                                    <td class="td10">
+                                        {{$item->pivot->price-($item->pivot->price *$item->pivot->discount_percent)/100  }}
+                                    </td>
+                                    <td class="td10">
+                                        {{$item->pivot->discount_percent}}
+                                    </td>
+                                    <td class="td10">
+                                        {{ $item->pivot->price  }}
+                                    </td>
+                                    <td class="td10">
+                                        {{ $item->pivot->quantity  }}
+                                    </td>
+                                    <td class="td10">
+                                        @if($item->picture!='')
+                                            <img src="{{URL::asset('images/'.$item->picture)}}" class="td10-image">
+                                            {{--@else--}}
+                                            {{--<span class="glyphicon glyphicon-ban-circle"></span>--}}
+                                        @endif
+                                    </td>
+                                    <td class="td30">
+                                        {{ $item->code  }}
+                                        <br>
+                                        {{ $item->name  }}
+                                    </td>
+                                </tr>
                             @endif
                         @endforeach
                     @endif

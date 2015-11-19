@@ -192,6 +192,16 @@ input, button{
     width: 40%;
     overflow: auto;
 }
+.td20{
+    text-align: center ;
+    width: 20%;
+    overflow: auto;
+}
+.td30_true{
+    text-align: center ;
+    width: 30%;
+    overflow: auto;
+}
 .td10-image{
     height: 50px;
     width:50px
@@ -241,6 +251,13 @@ input, button{
     .td10-image{
         height:10mm;
         width:10mm;
+    }
+    .items_row_break{
+        page-break-inside:avoid;
+        page-break-before:always;
+    }
+    .at_print{/* Table to print*/
+        page-break-inside:auto;
     }
     /*.bg_img{display:inline; z-index: -1 ;margin: 0 auto; position: absolute;}*/
     /** {-webkit-print-color-adjust:exact;}*/

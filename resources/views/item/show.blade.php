@@ -11,10 +11,15 @@
                 {{--@else--}}
                 {{--<span class="glyphicon glyphicon-ban-circle"></span>--}}
             @endif
+            <br>
+            @if(Auth::user()->type=='admin')
+                <a href="{{ URL::action('ItemController@index')}}/{{$item->id}}/edit"  class="btn color masafa">@lang('variables.edit')</a>
+                <a href="{{ URL::action('ItemController@index')}}/{{$item->id}}/delete" class="btn btn-danger masafa">@lang('variables.delete')</a>
+            @endif
         </div>
         <div class="col-lg-8">
             <h1>
-                <kbd>{{$item->name}}</kbd>
+                {{$item->name}}
             </h1>
             <hr>
             <h3>
