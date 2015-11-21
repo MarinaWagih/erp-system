@@ -10,9 +10,12 @@
     @lang('variables.invoice')  @lang('variables.number1')  {{$invoice->id}}
 @stop
 @section('content')
-   <a href="{{ URL::action('InvoiceController@index')}}/{{$invoice->id}}/edit" class="btn color masafa" role="button">@lang('variables.edit')</a>
+   <a
+           href="{{ URL::action('InvoiceController@index')}}/{{$invoice->id}}/edit"
+           class="btn color masafa" role="button" id="delete_x">@lang('variables.edit')</a>
     @if(Auth::user()->type=='admin')
-        <a href="{{ URL::action('InvoiceController@index')}}/{{$invoice->id}}/delete" class="btn btn-danger masafa" ole="button">@lang('variables.delete')</a>
+        <a href="{{ URL::action('InvoiceController@index')}}/{{$invoice->id}}/delete"
+           class="btn btn-danger masafa" id="edit_x" role="button">@lang('variables.delete')</a>
     @endif
     <button class="btn btn-warning masafa" id="print">@lang('variables.print')</button>
     <div class="wrapper"></div>

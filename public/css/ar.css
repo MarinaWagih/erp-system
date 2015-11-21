@@ -207,7 +207,7 @@ input, button{
     width:50px
 }
 @media print{
-   .Dashboard,.nav-color,#print
+   .Dashboard,.nav-color,#print,#edit_x,#delete_x
    {
        visibility: hidden;
        display: none;
