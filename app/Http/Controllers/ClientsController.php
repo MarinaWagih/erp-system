@@ -246,7 +246,8 @@ class ClientsController extends Controller
                         ->orWhere('trading_address', 'like', '%' . $name . "%");
 
                 })
-                ->paginate($this->pagination_No);
+                ->paginate($this->pagination_No)
+                ->setPath(url() . '/client/search/'.$name);
         }
         else{
             $clients = Client::where('name', 'like','%' . $name . "%")
@@ -255,7 +256,42 @@ class ClientsController extends Controller
                         ->orWhere('trading_name', 'like', '%' .$name . "%")
                         ->orWhere('trading_address', 'like', '%' . $name . "%")
                         ->paginate($this->pagination_No)
-                        ->setPath(url() . '/client/search');
+                        ->setPath(url() . '/client/search/'.$name);
+        }
+
+        $result=$clients->toArray();
+        $result['render']=$clients->render();
+        if($request->get('type')=='json')
+        {
+            return response()->json($result);
+        }
+        return view('client.all')->with(['clients' => $clients]);
+    }
+    public function search_query(Request $request,$query)
+    {
+        $name=$query;
+        if(Auth::user()->type=='representative')
+        {
+           $clients = Client::where('representative_id', '=', Auth::user()->id)
+            ->where(function($query) use ($name){
+                    $query->where('name', 'like', '%' .$name . "%")
+                        ->orWhere('phone', 'like', '%' .$name . "%")
+                        ->orWhere('mobile', 'like', '%' .$name . "%")
+                        ->orWhere('trading_name', 'like', '%' .$name . "%")
+                        ->orWhere('trading_address', 'like', '%' . $name . "%");
+
+                })
+                ->paginate($this->pagination_No)
+            ->setPath(url() . '/client/search/'.$name);
+        }
+        else{
+            $clients = Client::where('name', 'like','%' . $name . "%")
+                        ->orWhere('phone', 'like', '%' .$name . "%")
+                        ->orWhere('mobile', 'like', '%' .$name . "%")
+                        ->orWhere('trading_name', 'like', '%' .$name . "%")
+                        ->orWhere('trading_address', 'like', '%' . $name . "%")
+                        ->paginate($this->pagination_No)
+                        ->setPath(url() . '/client/search/'.$name);
         }
 
         $result=$clients->toArray();

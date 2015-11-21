@@ -161,4 +161,23 @@ class RepresentativesController extends Controller
         }
         return view('representative.all')->with(['representatives' => $representatives]);
     }
+    public function search_query(Request $request,$query)
+    {
+        $name=$query;
+        $representatives = User::where('type','representative')
+            ->where(
+                function($query) use ($name){
+                    $query->where('name', 'like', $name . "%")
+                        ->orWhere('phone', 'like', '%' .$name . "%");
+                })
+            ->paginate($this->pagination_No)
+            ->setPath(url() . '/representative/search/'.$query);
+        $result=$representatives->toArray();
+        $result['render']=$representatives->render();
+        if($request->get('type')=='json')
+        {
+            return response()->json($result);
+        }
+        return view('representative.all')->with(['representatives' => $representatives]);
+    }
 }

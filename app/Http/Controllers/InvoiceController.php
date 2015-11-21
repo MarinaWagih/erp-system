@@ -221,14 +221,41 @@ class InvoiceController extends Controller
                 ->orWhere('invoices.date','like',$request->get('query')."%")
                 ->join('clients','clients.id','=','invoices.client_id')
                 ->paginate($this->pagination_No)
-                ->setPath(url() . '/invoice/search');
+                ->setPath(url() . '/invoice/search/'.$request->get('query'));
         }
         else
         {
             $invoices =Invoice::where('id','like',$request->get('query')."%")
                 ->orWhere('date','like',$request->get('query')."%")
                 ->paginate($this->pagination_No)
-                ->setPath(url() . '/invoice/search');
+                ->setPath(url() . '/invoice/search/'.$request->get('query'));
+        }
+
+        $result = $invoices->toArray();
+        $result['render'] = $invoices->render();
+        if ($request->get('type') == 'json') {
+            return response()->json($result);
+        }
+        return view('invoice.all')->with(['invoices' => $invoices]);
+    }
+    public function search_query(Request $request,$query)
+    {
+        if(Auth::user()->type=='representative') {
+            $id = Auth::user()->id;
+//            $rep = Representative::where(['user_id' => $id])->take(1)->get();
+            $invoices = Invoice::where('clients.representative_id','=',$id)
+                ->where('invoices.id','like',$query."%")
+                ->orWhere('invoices.date','like',$query."%")
+                ->join('clients','clients.id','=','invoices.client_id')
+                ->paginate($this->pagination_No)
+                ->setPath(url() . '/invoice/search/'.$query);
+        }
+        else
+        {
+            $invoices =Invoice::where('id','like',$query."%")
+                ->orWhere('date','like',$query."%")
+                ->paginate($this->pagination_No)
+                ->setPath(url() . '/invoice/search/'.$query);
         }
 
         $result = $invoices->toArray();

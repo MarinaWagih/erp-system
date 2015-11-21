@@ -74,7 +74,7 @@ class HomeController extends Controller
             ->orWhere('email', 'like', '%' .$name . "%")
             ->orWhere('type', 'like', '%' .$name . "%")
             ->paginate($this->pagination_No)
-            ->setPath(url() . '/user/search');
+            ->setPath(url() . '/user/search/'.$name);
         $result=$users->toArray();
         $result['render']=$users->render();
         if($request->get('type')=='json')
