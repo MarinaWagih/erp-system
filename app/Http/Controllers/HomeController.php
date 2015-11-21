@@ -16,7 +16,7 @@ class HomeController extends Controller
      * @var int
      * Number of pagination result
      */
-    protected $pagination_No=5;
+    protected $pagination_No=10;
     public function __construct()
     {
         $this->middleware('auth');
@@ -54,7 +54,7 @@ class HomeController extends Controller
     public function user_search(Request $request)
     {
         $name=$request->get('query');
-        $users = User::where('name', 'like', $name . "%")
+        $users = User::where('name', 'like', '%' .$name . "%")
             ->orWhere('email', 'like', '%' .$name . "%")
             ->orWhere('type', 'like', '%' .$name . "%")
             ->paginate($this->pagination_No)

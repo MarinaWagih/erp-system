@@ -18,7 +18,6 @@ class Client extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
         'name',
         'address',
         'phone',
@@ -34,7 +33,10 @@ class Client extends Model
      * @var array Of dates to be treated as Carbon Object
      */
     protected $dates = ['date'];
-
+    public function setNameAttribute($name)
+    {
+        $this->attributes['name']=trim($name);
+    }
     /**
      * Client Have one  representative
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

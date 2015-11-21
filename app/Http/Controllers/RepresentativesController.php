@@ -14,7 +14,7 @@ class RepresentativesController extends Controller
     /**
      *
      */
-    protected $pagination_No=5;
+    protected $pagination_No=10;
     public function __construct()
     {
         $this->middleware('auth');

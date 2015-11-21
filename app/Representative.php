@@ -20,7 +20,10 @@ class Representative extends Model
      * @var array
      */
     protected $fillable = ['name', 'phone','user_id'];
-
+    public function setNameAttribute($name)
+    {
+        $this->attributes['name']=trim($name);
+    }
     public function clients()
     {
         return $this->hasMany('App\Client');

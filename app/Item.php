@@ -20,6 +20,11 @@ class Item extends Model
     protected $fillable =[ 'name','code', 'picture', 'price_31_a',
                            'price_32_b', 'price_1050', 'price_1250',
                            'price_1034'];
+
+    public function setNameAttribute($name)
+    {
+        $this->attributes['name']=trim($name);
+    }
     public function invoices()
     {
         return $this->belongsToMany('App\Invoice')

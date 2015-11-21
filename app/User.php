@@ -37,6 +37,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 //    {
 //     return $this->hasOne('App\Representative');
 //    }
+    public function setNameAttribute($name)
+    {
+        $this->attributes['name']=trim($name);
+    }
     public function clients()
     {
         return $this->hasMany('App\Client','representative_id','id');

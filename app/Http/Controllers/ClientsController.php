@@ -17,7 +17,7 @@ class ClientsController extends Controller
      * @var int
      * Number of pagination result
      */
-    protected $pagination_No=5;
+    protected $pagination_No=10;
 
     /**
      * Constructor
@@ -239,7 +239,7 @@ class ClientsController extends Controller
 //            dd(Auth::user()->id);
             $clients = Client::where('representative_id', '=', Auth::user()->id)
             ->where(function($query) use ($name){
-                    $query->where('name', 'like', $name . "%")
+                    $query->where('name', 'like', '%' .$name . "%")
                         ->orWhere('phone', 'like', '%' .$name . "%")
                         ->orWhere('mobile', 'like', '%' .$name . "%")
                         ->orWhere('trading_name', 'like', '%' .$name . "%")
@@ -249,7 +249,7 @@ class ClientsController extends Controller
                 ->paginate($this->pagination_No);
         }
         else{
-            $clients = Client::where('name', 'like', $name . "%")
+            $clients = Client::where('name', 'like','%' . $name . "%")
                         ->orWhere('phone', 'like', '%' .$name . "%")
                         ->orWhere('mobile', 'like', '%' .$name . "%")
                         ->orWhere('trading_name', 'like', '%' .$name . "%")
@@ -282,7 +282,7 @@ class ClientsController extends Controller
                 $id = Auth::user()->id;
 //                $rep = Representative::where(['user_id' => $id])->take(1)->get();
                 $clients=Client::select('id', 'name as text')
-                    ->where('name', 'like', $request->get('query') . "%")
+                    ->where('name', 'like', '%' .$request->get('query') . "%")
                     ->where('representative_id','=',$id)
                     ->get();
 //                dd($clients);
@@ -290,7 +290,7 @@ class ClientsController extends Controller
             else
             {
                 $clients = Client::select('id', 'name as text')
-                    ->where('name', 'like', $request->get('query') . "%")
+                    ->where('name', 'like', '%' .$request->get('query') . "%")
                 ->get();
              }
            return response()->json($clients);
