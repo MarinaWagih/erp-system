@@ -51,11 +51,11 @@
             <div class="col-lg-9">
                 <table class="table table-responsive table-bordered">
                     <tr class="right">
-                        <td >{{$invoice->client->name}}</td>
+                        <td >{{{$invoice->client->name}}}</td>
                         <td> @lang('variables.name')  @lang('variables.client')</td>
                     </tr>
                     <tr class="right">
-                        <td >{{$invoice->client->address}}</td>
+                        <td >{{{$invoice->client->address}}}</td>
                         <td> @lang('variables.address')  @lang('variables.client')</td>
                     </tr>
                     <tr class="right">
@@ -63,7 +63,7 @@
                         <td> @lang('variables.mobile')  @lang('variables.client')</td>
                     </tr>
                     <tr class="right">
-                        <td >{{$invoice->client->representative->name}}</td>
+                        <td >{{{$invoice->client->representative->name}}}</td>
                         <td> @lang('variables.representative') </td>
                     </tr>
                     <tr class="right">
