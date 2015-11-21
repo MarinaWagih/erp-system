@@ -63,7 +63,8 @@
                         <td> @lang('variables.mobile')  @lang('variables.client')</td>
                     </tr>
                     <tr class="right">
-                        <td >{{{$invoice->client->representative->name}}}</td>
+                        <td >{{{$invoice->client->representative?$invoice->client->representative->name:''}}}</td>
+                        {{--<td >{{{$invoice->client->representative->name}}}</td>--}}
                         <td> @lang('variables.representative') </td>
                     </tr>
                     <tr class="right">
