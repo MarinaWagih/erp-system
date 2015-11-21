@@ -688,6 +688,11 @@
                     flag=true;
                     msg +='<div> التاريخ إجباري</div>';
                 }else{flag=false;}
+                if(jQuery.isEmptyObject(item_to_add))
+                {
+                    flag=true;
+                    msg +='<div> أضف أصناف</div>';
+                }else{flag=false;}
                 if(flag)
                 {
                     e.preventDefault();

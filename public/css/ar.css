@@ -242,15 +242,15 @@ input, button{
     .td30{
         text-align: center ;
         width: 40%;
-        font-size: 3mm;
+        /*font-size: 4mm;*/
     }
     .right{
         text-align:right;
-        font-size: 3mm;
+        /*font-size: 4mm;*/
     }
     .td10-image{
-        height:10mm;
-        width:10mm;
+        /*height:10mm;*/
+        /*width:10mm;*/
     }
     .items_row_break{
         page-break-inside:avoid;

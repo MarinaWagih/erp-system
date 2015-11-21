@@ -58,6 +58,22 @@ class HomeController extends Controller
             ->orWhere('email', 'like', '%' .$name . "%")
             ->orWhere('type', 'like', '%' .$name . "%")
             ->paginate($this->pagination_No)
+            ->setPath(url() . '/user/search/'.$name);
+        $result=$users->toArray();
+        $result['render']=$users->render();
+        if($request->get('type')=='json')
+        {
+            return response()->json($result);
+        }
+        return view('auth.all')->with(['users' => $users]);
+    }
+    public function user_search_query(Request $request,$query)
+    {
+        $name=$query;
+        $users = User::where('name', 'like', '%' .$name . "%")
+            ->orWhere('email', 'like', '%' .$name . "%")
+            ->orWhere('type', 'like', '%' .$name . "%")
+            ->paginate($this->pagination_No)
             ->setPath(url() . '/user/search');
         $result=$users->toArray();
         $result['render']=$users->render();

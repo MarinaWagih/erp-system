@@ -16,6 +16,7 @@ Route::get('/home','HomeController@index');
 Route::get('/user','HomeController@user_all');
 Route::get('/user/search','HomeController@user_search');
 Route::post('/user/search','HomeController@user_search');
+Route::get('/user/search/{query}','HomeController@user_search_query');
 Route::get('/user/{id}/edit','HomeController@user_edit');
 Route::post('/user/{id}','HomeController@user_update');
 Route::get('/user/{id}/delete','HomeController@user_delete');
@@ -34,12 +35,14 @@ Route::get('/client/ajax_search','ClientsController@ajaxSearch');
 Route::get('/client/{id}/delete','ClientsController@destroy');
 Route::post('/client/search','ClientsController@search');
 Route::get('/client/search','ClientsController@search');
+Route::get('/client/search/{query}','ClientsController@search_query');
 Route::resource('/client','ClientsController');
 
 
 //representative Routes
 Route::get('/representative/{id}/delete','RepresentativesController@destroy');
 Route::post('/representative/search','RepresentativesController@search');
+Route::post('/representative/search/{query}','RepresentativesController@search_query');
 Route::get('/representative/search','RepresentativesController@index');
 Route::resource('/representative','RepresentativesController');
 
@@ -47,6 +50,7 @@ Route::resource('/representative','RepresentativesController');
 Route::get('/item/{id}/delete','ItemController@destroy');
 Route::post('/item/search','ItemController@search');
 Route::get('/item/search','ItemController@search');
+Route::get('/item/search/{query}','ItemController@search_query');
 Route::get('/item/ajax_search','ItemController@ajaxSearch');
 Route::get('/item/search_by_id','ItemController@search_by_id');
 Route::resource('/item','ItemController');

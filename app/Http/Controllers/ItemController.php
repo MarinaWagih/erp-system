@@ -163,10 +163,26 @@ class ItemController extends Controller
      */
     public function search(Request $request)
     {
-        $items = Item::where('name', 'like', "%".$request->get('query') . "%")
+        $items = Item::where('name', 'like',
+            "%".$request->get('query') . "%")
             ->orWhere('code', 'like', '%'.$request->get('query')."%")
             ->paginate($this->pagination_No)
-            ->setPath(url() . '/item/search');
+            ->setPath(url().'/item/search/'.$request->get('query'));
+        $result=$items->toArray();
+        $result['render']=$items->render();
+        if($request->get('type')=='json')
+        {
+            return response()->json($result);
+        }
+        return view('item.all')->with(['items' => $items]);
+    }
+    public function search_query(Request $request,$query)
+    {
+        $items = Item::where('name', 'like',
+            "%".$query . "%")
+            ->orWhere('code', 'like', '%'.$query."%")
+            ->paginate($this->pagination_No)
+            ->setPath(url().'/item/search/'.$query);
         $result=$items->toArray();
         $result['render']=$items->render();
         if($request->get('type')=='json')
