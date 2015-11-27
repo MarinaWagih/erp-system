@@ -117,7 +117,9 @@
                     table_show += '</td>';
 
                     $('#'+index).html(table_show);
+
                 });
+                $('#items').val(JSON.stringify(item_to_add));
             }
             function doAjax()
             {
@@ -157,7 +159,9 @@
             {
                 $('#quantity').val('0');
                 $('#item_price').val('0');
-                $('#items_list').val('');
+//                $('#items_list').val('');
+                $("#items_list").select2('val', '');
+                $('#total_item').html('');
             }
             //date picker
             $(function () {
@@ -240,9 +244,11 @@
                 itemsajax[e.params.data.id]=e.params.data;
                 //alert('added to array');
                 $('#item_price').val(e.params.data.price);
+                $('#quantity').val(1);
                 //alert('price in price');
                 item=e.params.data.id;
                 //alert(item);
+                $('#total_item').html( calculateItemTotal());
                 console.log(itemsajax);
             });
 
@@ -276,6 +282,10 @@
             });
 
             $('#quantity').on('change',function(){
+
+                $('#total_item').html( calculateItemTotal());
+            });
+            $('#quantity').keyup(function(){
 
                 $('#total_item').html( calculateItemTotal());
             });

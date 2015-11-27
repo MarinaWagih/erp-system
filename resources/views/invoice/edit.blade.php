@@ -137,6 +137,7 @@
 
                         $('#'+index).html(table_show);
                     });
+                    $('#items').val(JSON.stringify(item_to_add));
                 }
                 function doAjax()
                 {
@@ -167,7 +168,7 @@
                     {
                         console.log(value.discount_percent);
                         item_to_add[index].discount_percent=$('#discount_percentage').val();
-                        console.log(value.discount_percent);
+                        console.log(item_to_add);
                         buildTable();
                         boardcalc();
                     });
@@ -176,20 +177,26 @@
                 {
                     $('#quantity').val('0');
                     $('#item_price').val('0');
-                    $('#items_list').val('');
+//                    $('#items_list').val('');
+                    $("#items_list").select2('val', '');
+                    $('#total_item').html('');
                 }
                 boardcalc();
+
+
                 @if($invoice->additional_discount_percentage > 0)
                     $('#tax_check').attr('checked','true');
                     $('#Total_after_taxes').html("{{$invoice->total_after_sales_tax}}");
                 @endif
                 $('#items').val(JSON.stringify(item_to_add));
+
                 $(function () {
                             $("#date").datepicker({
                                 dateFormat: 'yy-mm-dd'
                             });
 
                         });
+
                 $('#items_list').select2({
                             dir: "rtl",
                             data:data_for_item_list
@@ -203,6 +210,7 @@
                                                 id:"{{$invoice->client->id}}"
                                             }]
                                         });
+
                 $(".items_row").dblclick(function(){
                    var id= $(this).attr('id');
                     $('#itemFormModel').modal();
@@ -217,6 +225,7 @@
 
 
                 });
+
                 $('#items_list').on("select2:select", function (e) {
                     //console.log("select2:select", e.params.data);
                     itemsajax[e.params.data.id]=e.params.data;
@@ -225,6 +234,7 @@
                     //alert('price in price');
                     item=e.params.data.id;
                     //alert(item);
+                    $('#total_item').html( calculateItemTotal());
                     console.log(itemsajax);
                 });
 
@@ -675,6 +685,10 @@
                     $('#total_item').html( calculateItemTotal());
                 });
 
+                $('#quantity').keyup(function(){
+
+                    $('#total_item').html( calculateItemTotal());
+                });
                 $('#discount_percentage').on('change',function(){
 
                     $('#total_item').html( calculateItemTotal());
@@ -708,6 +722,7 @@
                             $('#items').val(JSON.stringify(item_to_add));
                     boardcalc();
 });
+
                 $(document).on('click','#add_form',function (e){
                     var flag=false;
                     var discount=$('#discount_percentage').val();

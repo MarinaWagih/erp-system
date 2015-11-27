@@ -1,16 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
-
-use App\Client;
 use App\Invoice;
-use App\Representative;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-
 class InvoiceController extends Controller
 {
     /**
@@ -19,7 +12,6 @@ class InvoiceController extends Controller
      * Number of pagination result
      */
     protected $pagination_No = 10;
-
     /**
      * Constructor
      * to add Middleware That needed to this controller
@@ -31,9 +23,7 @@ class InvoiceController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('admin', ['only' => ['delete']]);
-
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -54,10 +44,8 @@ class InvoiceController extends Controller
             $invoices = Invoice::paginate($this->pagination_No)
                 ->setPath(url() . '/invoice');
         }
-
         return view('invoice.all')->with(['invoices' => $invoices]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -76,7 +64,6 @@ class InvoiceController extends Controller
 //        }
         return view('invoice.create');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -91,13 +78,11 @@ class InvoiceController extends Controller
             'client_id' => 'required',
         ]);
         $invoice = Invoice::create($request->all());
-
 //        dd($invoice->id);
         $items=$this->prepareItems($request->get('items'));
         $invoice->items()->sync($items);
         return view('invoice.show')->with(['invoice' => $invoice]);
     }
-
     /**
      * Display the specified resource.
      *
@@ -107,14 +92,11 @@ class InvoiceController extends Controller
     public function show($id)
     {
         $invoice = Invoice::find($id);
-
-
         if ($invoice) {
             $id = Auth::user()->id;
             if(Auth::user()->type=='representative')
             {
                 if($invoice->client->representative_id==$id)
-
                 {
                     return view('invoice.show')->with(['invoice' => $invoice]);
                 }
@@ -123,14 +105,13 @@ class InvoiceController extends Controller
                 }
             }
             else{
-            return view('invoice.show')->with(['invoice' => $invoice]);
+                return view('invoice.show')->with(['invoice' => $invoice]);
             }
         } else {
             return view('errors.Unauth')
                 ->with(['msg' => 'variables.not_found']);
         }
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -147,7 +128,7 @@ class InvoiceController extends Controller
             {
                 if($invoice->client->representative_id==$id)
                 {
-                     return view('invoice.edit')->with(['invoice' => $invoice]);
+                    return view('invoice.edit')->with(['invoice' => $invoice]);
                 }
                 else
                 {
@@ -165,9 +146,7 @@ class InvoiceController extends Controller
             return view('errors.Unauth')
                 ->with(['msg' => 'variables.not_found']);
         }
-
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -194,7 +173,6 @@ class InvoiceController extends Controller
                 ->with(['msg' => 'variables.not_found']);
         }
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -206,7 +184,6 @@ class InvoiceController extends Controller
         Invoice::destroy($id);
         return redirect('invoice');
     }
-
     /**
      * @param Request $request
      * @return $this|\Illuminate\Http\JsonResponse
@@ -230,7 +207,6 @@ class InvoiceController extends Controller
                 ->paginate($this->pagination_No)
                 ->setPath(url() . '/invoice/search/'.$request->get('query'));
         }
-
         $result = $invoices->toArray();
         $result['render'] = $invoices->render();
         if ($request->get('type') == 'json') {
@@ -257,7 +233,6 @@ class InvoiceController extends Controller
                 ->paginate($this->pagination_No)
                 ->setPath(url() . '/invoice/search/'.$query);
         }
-
         $result = $invoices->toArray();
         $result['render'] = $invoices->render();
         if ($request->get('type') == 'json') {
@@ -265,14 +240,12 @@ class InvoiceController extends Controller
         }
         return view('invoice.all')->with(['invoices' => $invoices]);
     }
-
     /**
      * @param $items list of items in invoice
      * @return array of prepared array to sync in db
      */
     private function prepareItems($items)
     {
-
         $items= json_decode($items, true);
         return $items;
     }

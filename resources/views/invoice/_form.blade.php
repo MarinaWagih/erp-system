@@ -66,7 +66,9 @@
     <label  for="exampleInputAmount">@lang('variables.discount')</label>
     <div class="input-group">
         <div class="input-group-addon">%</div>
-        <input type="number" class="form-control" id="discount_percentage" placeholder="@lang('variables.percentage') @lang('variables.discount')" min="0" value="20">
+        <input type="number" class="form-control" id="discount_percentage"
+               placeholder="@lang('variables.percentage') @lang('variables.discount')"
+               min="0" max="28" value="20">
         <div class="input-group-addon">.00</div>
     </div>
 </div>

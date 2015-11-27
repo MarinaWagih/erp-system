@@ -27,11 +27,11 @@
             <div class="left first">
                 <br>
                 <p class="title4">
-                    {{$invoice->id}} : @lang('variables.number1') @lang('variables.show')
+                     @lang('variables.number1') @lang('variables.show') : {{$invoice->num($invoice->id)}}
                 </p>
                 <hr>
                 <p class="title4">
-                    {{$invoice->date}} : @lang('variables.date')
+                  @lang('variables.date') : {{$invoice->adate('j F Y',$invoice->date)}}
                 </p>
             </div>
             <div class="left first">
@@ -59,7 +59,7 @@
                         <td> @lang('variables.address')  @lang('variables.client')</td>
                     </tr>
                     <tr class="right">
-                        <td >{{{$invoice->client->mobile}}}</td>
+                        <td >{{{$invoice->num($invoice->client->mobile)}}}</td>
                         <td> @lang('variables.mobile')  @lang('variables.client')</td>
                     </tr>
                     <tr class="right">
@@ -146,19 +146,19 @@
                         @foreach($invoice->items as $key=>$item)
                             <tr id="{{$item->id}}" class="items_row">
                                <td class="td10">
-                                    {{($item->pivot->price-($item->pivot->price *$item->pivot->discount_percent)/100)*$item->pivot->quantity }}
+                                    {{$invoice->num(($item->pivot->price-($item->pivot->price *$item->pivot->discount_percent)/100)*$item->pivot->quantity )}}
                                 </td>
                                 <td class="td10">
-                                    {{$item->pivot->price-($item->pivot->price *$item->pivot->discount_percent)/100  }}
+                                    {{$invoice->num($item->pivot->price-($item->pivot->price *$item->pivot->discount_percent)/100)  }}
                                 </td>
                                 <td class="td10">
-                                    {{$item->pivot->discount_percent}}
+                                    {{$invoice->num($item->pivot->discount_percent)}}
                                 </td>
                                 <td class="td10">
-                                    {{ $item->pivot->price  }}
+                                    {{ $invoice->num($item->pivot->price)  }}
                                 </td>
                                 <td class="td10">
-                                    {{ $item->pivot->quantity  }}
+                                    {{ $invoice->num($item->pivot->quantity)  }}
                                 </td>
                                 <td class="td10">
                                     @if($item->picture!='')
@@ -168,9 +168,9 @@
                                     @endif
                                 </td>
                                 <td class="td30">
-                                    {{ $item->code  }}
+                                    {{ $invoice->num($item->code ) }}
                                     <br>
-                                    {{ $item->name  }}
+                                    {{$invoice->num( $item->name ) }}
                                 </td>
                                 {{--<td class="td10">--}}
                                     {{--{{ $item->id }}--}}
@@ -179,19 +179,19 @@
                             @if((($key+1)%7==0)&&(($key+1)!==count($invoice->items)))
                                 <tr class="items_row_break">
                                     <td class="td10">
-                                        {{($item->pivot->price-($item->pivot->price *$item->pivot->discount_percent)/100)*$item->pivot->quantity }}
+                                        {{$invoice->num(($item->pivot->price-($item->pivot->price *$item->pivot->discount_percent)/100)*$item->pivot->quantity) }}
                                     </td>
                                     <td class="td10">
-                                        {{$item->pivot->price-($item->pivot->price *$item->pivot->discount_percent)/100  }}
+                                        {{$invoice->num($item->pivot->price-($item->pivot->price *$item->pivot->discount_percent)/100)  }}
                                     </td>
                                     <td class="td10">
-                                        {{$item->pivot->discount_percent}}
+                                        {{$invoice->num($item->pivot->discount_percent)}}
                                     </td>
                                     <td class="td10">
-                                        {{ $item->pivot->price  }}
+                                        {{ $invoice->num($item->pivot->price ) }}
                                     </td>
                                     <td class="td10">
-                                        {{ $item->pivot->quantity  }}
+                                        {{$invoice->num( $item->pivot->quantity ) }}
                                     </td>
                                     <td class="td10">
                                         @if($item->picture!='')
@@ -201,9 +201,9 @@
                                         @endif
                                     </td>
                                     <td class="td30">
-                                        {{ $item->code  }}
+                                        {{$invoice->num( $item->code ) }}
                                         <br>
-                                        {{ $item->name  }}
+                                        {{$invoice->num( $item->name)  }}
                                     </td>
                                 </tr>
                             @endif
@@ -219,111 +219,45 @@
         {{--========================================================--}}
         {{--===================calculations=========================--}}
         {{--========================================================--}}
-        <div class="row">
-            {{--<div class="col-lg-1"></div>--}}
-            <div class="col-lg-12">
-            <div class="row final_calc">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                <div class="checkbox">
-                    <label for="taxes" style="margin-right:20px;"> Taxes</label>
-                    @if($invoice->total_after_sales_tax !=0)
-                        <span class="glyphicon glyphicon-check"></span>
-                    @else
-                        <span class="glyphicon glyphicon-unchecked"></span>
-                    @endif
-
-                </div>
-                <span id="Total_after_taxes" class="right">{{$invoice->total_after_sales_tax}}</span>
-            </div>
-            {{--========================================================--}}
-            {{--========================================================--}}
-            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                <div class="row">
-                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                        <span id="additional_discount_value" class="right">
-                            {{$invoice-> additional_discount_percentage}}%
-                        </span>
-
-                    </div>
-                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                        <span class="color_dark title5 right" >
-                            @lang('variables.percentage')  @lang('variables.discount') @lang('variables.additional')
-                        </span>
-                    </div>
-
-                </div>
-                <div class="row">
-
-                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                        <span id="additional_discount_value" class="right">
-                          {{$invoice->totalAfterDiscount()*($invoice-> additional_discount_percentage/100)}}
-                        </span>
-                    </div>
-                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                        <span class="color_dark title5 right">
-                            @lang('variables.value')  @lang('variables.discount') @lang('variables.additional')
-                         </span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                        <span id="Total_additional_discount" class="right">
-                            {{$invoice->totalAfterDiscount()-($invoice->totalAfterDiscount()*($invoice-> additional_discount_percentage/100))}}
-                        </span>
-                    </div>
-                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                        <span class="color_dark title5 right">
-                            @lang('variables.the_total')
-                            @lang('variables.after')  @lang('variables.discount')
-                            @lang('variables.additional')
-                        </span>
-                    </div>
-                </div>
-            </div>
-            {{--========================================================--}}
-            {{--========================================================--}}
-            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                <div class="row">
-                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                        <span id="Total_invoice_before_discount" class="right">{{$invoice->totalBeforeDiscount()}}</span>
-                    </div>
-                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                        <span class="color_dark title5 right">
-                            @lang('variables.total') @lang('variables.price') @lang('variables.before') @lang('variables.discount')
-                        </span>
-                    </div>
-
-                </div>
-                <div class="row">
-
-                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                        <span id="Total_invoice_discount" class="right">
-                           {{$invoice->totalDiscount()}}
-                        </span>
-                    </div>
-                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                        <span class="color_dark title5 right" >
-                            @lang('variables.total') @lang('variables.discount')
-                        </span>
-                    </div>
-                </div>
-                <div class="row">
-
-                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                        <span id="Total_invoice_after_discount" class="right">
-                            {{$invoice->totalAfterDiscount()}}
-                        </span>
-                    </div>
-                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                        <span class="color_dark title5 right">
-                            @lang('variables.total') @lang('variables.price') @lang('variables.after') @lang('variables.discount')
-                        </span>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
-            {{--<div class="col-lg-1"></div>--}}
+        <div class="row final_calc" style="direction: rtl">
+            <table class="table table-responsive at_print" >
+                <tr>
+                    <td>@lang('variables.total') @lang('variables.price') @lang('variables.before') @lang('variables.discount')</td>
+                    <td>{{$invoice->num($invoice->totalBeforeDiscount())}}  @lang('variables.eg_p')</td>
+                    <td> @lang('variables.percentage')  @lang('variables.discount') @lang('variables.additional')</td>
+                    <td> {{$invoice->num($invoice-> additional_discount_percentage.' %')}}</td>
+                </tr>
+                <tr>
+                    <td>@lang('variables.total') @lang('variables.discount')</td>
+                    <td>  {{$invoice->num($invoice->totalDiscount())}}  @lang('variables.eg_p')</td>
+                    <td>  @lang('variables.value')  @lang('variables.discount') @lang('variables.additional')</td>
+                    <td> {{$invoice->num($invoice->totalAfterDiscount()*
+                    ($invoice-> additional_discount_percentage/100))}}  @lang('variables.eg_p')</td>
+                </tr>
+                <tr>
+                    <td>  @lang('variables.total') @lang('variables.price') @lang('variables.after') @lang('variables.discount')</td>
+                    <td> {{$invoice->num($invoice->totalAfterDiscount())}}  @lang('variables.eg_p')</td>
+                    <td> @lang('variables.the_total')
+                        @lang('variables.after')  @lang('variables.discount')
+                        @lang('variables.additional')</td>
+                    <td>{{$invoice->num($invoice->totalAfterDiscount()
+                            -($invoice->totalAfterDiscount()*
+                            ($invoice-> additional_discount_percentage/100)))}}  @lang('variables.eg_p')</td>
+                </tr>
+                <tr>
+                    <td>
+                        @if($invoice->total_after_sales_tax !=0)
+                            <span class="glyphicon glyphicon-check"></span>
+                        @else
+                            <span class="glyphicon glyphicon-unchecked"></span>
+                        @endif
+                        @lang('variables.taxes')
+                    </td>
+                    <td>{{$invoice->num($invoice->total_after_sales_tax)}}  @lang('variables.eg_p')</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
         </div>
         {{--========================================================--}}
         {{--========================================================--}}
