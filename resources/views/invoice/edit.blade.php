@@ -81,6 +81,7 @@
                         Total_invoice_after_discount += (value.price-
                         (value.price * value.discount_percent)/100)*value.quantity;
                     });
+                    $('#Total_invoice_discount_show').html($('#discount_percentage').val()+'%');
                     $('#Total_invoice_before_discount').html(Total_invoice_before_discount.toFixed(3));
                     $('#Total_invoice_after_discount').html(Total_invoice_after_discount.toFixed(3));
                     $('#Total_additional_discount').html(
@@ -663,6 +664,7 @@
                     var result=total-(total*discount/100);
                     $('#additional_discount_value').html(total*discount/100);
                     $('#Total_additional_discount').html(result);
+                    $('#Total_invoice_discount_show').html(discount+'%');
                     if( $('#tax_check').is(':checked') )
                     {
                         // alert($('#Total_additional_discount').html());
@@ -692,6 +694,7 @@
                 $('#discount_percentage').on('change',function(){
 
                     $('#total_item').html( calculateItemTotal());
+                    $('#Total_invoice_discount_show').html($('#discount_percentage').val()+'%');
                     changeDiscount();
                 });
 

@@ -203,100 +203,59 @@
 {{--===================calculations=========================--}}
 {{--========================================================--}}
 <div class="row">
-<div class="col-lg-1"></div>
-<div class="col-lg-10">
-    <div class="row final_calc">
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-            <div class="checkbox">
-                <label for="taxes" style="margin-right:20px;"> Taxes</label>
-                <input id="tax_check" type="checkbox">
-            </div>
-            <span id="Total_after_taxes">0.000</span>
-        </div>
-        {{--========================================================--}}
-        {{--========================================================--}}
-        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-            <div class="row">
-                {{--col-lg-4 col-md-4 col-sm-4 col-xs-4 --}}
-                {{--col-lg-8 col-md-8 col-sm-8 col-xs-8--}}
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                    <input type="number" value="0" id="Total_invoice_discount" name="additional_discount_percentage" min="0" max="28" class="form-control input-sm">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <span class="color_dark title5">
-                    @lang('variables.percentage')  @lang('variables.discount') @lang('variables.additional')
-                </span>
-                </div>
-
-            </div>
-            <div class="row">
-
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                <span id="additional_discount_value">
-                   0.000
-                </span>
-                </div>
-                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                <span class="color_dark title5">
-                    @lang('variables.value')  @lang('variables.discount') @lang('variables.additional')
-                 </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                    <span id="Total_additional_discount">0.000</span>
-                </div>
-                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                <span class="color_dark title5">
+{{--<div class="col-lg-1"></div>--}}
+<div class="col-lg-12">
+    <div class="row final_calc" style="direction: rtl">
+        <table class="table table-responsive at_print" >
+            <tr>
+                <td>
                     @lang('variables.total') @lang('variables.price')
+                    @lang('variables.before') @lang('variables.discount')
+                </td>
+                <td id="Total_invoice_before_discount">0.00</td>
+                <td>
+                    @lang('variables.percentage')
+                    @lang('variables.discount')
+                    @lang('variables.additional')</td>
+                <td>
+                    <input type="number" value="0"
+                           id="Total_invoice_discount"
+                           name="additional_discount_percentage"
+                           min="0" max="28"
+                           class="form-control input-sm">
+                </td>
+            </tr>
+            <tr>
+                <td>@lang('variables.total') @lang('variables.discount')</td>
+                <td  id="Total_invoice_discount_show">
+                    20%
+                </td>
+                <td>  @lang('variables.value')  @lang('variables.discount')
+                    @lang('variables.additional')</td>
+                <td id="additional_discount_value"> 0.000</td>
+            </tr>
+            <tr>
+                <td>  @lang('variables.total') @lang('variables.price')
+                    @lang('variables.after') @lang('variables.discount')</td>
+                <td  id="Total_invoice_after_discount">0.000 </td>
+                <td> @lang('variables.the_total')
                     @lang('variables.after')  @lang('variables.discount')
-                    @lang('variables.additional')
-                </span>
-                </div>
-            </div>
-        </div>
-        {{--========================================================--}}
-        {{--========================================================--}}
-        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-            <div class="row">
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                    <span id="Total_invoice_before_discount">0.000</span>
-                </div>
-                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                <span class="color_dark title5">
-                    @lang('variables.total') @lang('variables.price') @lang('variables.before') @lang('variables.discount')
-                </span>
-                </div>
-
-            </div>
-            <div class="row">
-
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                <span id="Total_invoice_discount">
-                   20%
-                </span>
-                </div>
-                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                <span class="color_dark title5">
-                    @lang('variables.total') @lang('variables.discount')
-                </span>
-                </div>
-            </div>
-            <div class="row">
-
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                    <span id="Total_invoice_after_discount">0.000</span>
-                </div>
-                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                <span class="color_dark title5">
-                    @lang('variables.total') @lang('variables.price') @lang('variables.after') @lang('variables.discount')
-                </span>
-                </div>
-            </div>
-        </div>
+                    @lang('variables.additional')</td>
+                <td  id="Total_additional_discount"> 0.000</td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="tax_check" type="checkbox">
+                    @lang('variables.taxes')
+                </td>
+                <td id="Total_after_taxes">0.000</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
     </div>
 </div>
-<div class="col-lg-1"></div>
+{{--<div class="col-lg-1"></div>--}}
 </div>
 <br>
 {{--========================================================--}}
