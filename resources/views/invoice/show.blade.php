@@ -172,40 +172,25 @@
                                     <br>
                                     {{$invoice->num( $item->name ) }}
                                 </td>
-                                {{--<td class="td10">--}}
-                                    {{--{{ $item->id }}--}}
-                                {{--</td>--}}
                             </tr>
-                            @if((($key+1)%7==0)&&(($key+1)!==count($invoice->items)))
-                                <tr class="items_row_break">
-                                    <td class="td10">
-                                        {{$invoice->num(($item->pivot->price-($item->pivot->price *$item->pivot->discount_percent)/100)*$item->pivot->quantity) }}
-                                    </td>
-                                    <td class="td10">
-                                        {{$invoice->num($item->pivot->price-($item->pivot->price *$item->pivot->discount_percent)/100)  }}
-                                    </td>
-                                    <td class="td10">
-                                        {{$invoice->num($item->pivot->discount_percent)}}
-                                    </td>
-                                    <td class="td10">
-                                        {{ $invoice->num($item->pivot->price ) }}
-                                    </td>
-                                    <td class="td10">
-                                        {{$invoice->num( $item->pivot->quantity ) }}
-                                    </td>
-                                    <td class="td10">
-                                        @if($item->picture!='')
-                                            <img src="{{URL::asset('images/'.$item->picture)}}" class="td10-image">
-                                            {{--@else--}}
-                                            {{--<span class="glyphicon glyphicon-ban-circle"></span>--}}
-                                        @endif
-                                    </td>
-                                    <td class="td30">
-                                        {{$invoice->num( $item->code ) }}
-                                        <br>
-                                        {{$invoice->num( $item->name)  }}
-                                    </td>
+                            @if((($key)!=0)&&(($key+1)%8==0)&&(($key+1)!==count($invoice->items)))
+                            </tbody>
+                            </table>
+                            <div class="items_row_break"></div>
+                            <table class="table table-bordered at_print" >
+                                <thead >
+                                <tr class="fe_el_nos_table">
+                                    <th  class="myth">@lang('variables.the_total') @lang('variables.after') @lang('variables.discount')</th>
+                                    <th  class="myth">@lang('variables.price') @lang('variables.after') @lang('variables.discount')</th>
+                                    <th  class="myth">@lang('variables.percentage')  @lang('variables.discount')</th>
+                                    <th  class="myth">@lang('variables.price') @lang('variables.before') @lang('variables.discount')</th>
+                                    <th  class="myth">@lang('variables.quantity')</th>
+                                    <th  class="myth">@lang('variables.image')</th>
+                                    <th  class="myth">@lang('variables.name')</th>
+                                    {{--<th  class="myth">@lang('variables.number')</th>--}}
                                 </tr>
+                                </thead>
+                                <tbody id="tableBody">
                             @endif
                         @endforeach
                     @endif
@@ -220,7 +205,7 @@
         {{--===================calculations=========================--}}
         {{--========================================================--}}
         <div class="row final_calc" style="direction: rtl">
-            <table class="table table-responsive at_print" >
+            <table class="table table-responsive" >
                 <tr>
                     <td>@lang('variables.total') @lang('variables.price') @lang('variables.before') @lang('variables.discount')</td>
                     <td>{{$invoice->num($invoice->totalBeforeDiscount())}}  @lang('variables.eg_p')</td>

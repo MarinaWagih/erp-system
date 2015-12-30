@@ -53,8 +53,8 @@
 <div class="form-group">
     {!! Form::label('price_type',$price) !!}
     <select id="price_type" class="form-control" name="price_type">
-        <option value="price_1050" {{isset($invoice->price_type)&&$invoice->price_type=='price_1050'?'selected':''}}>1050 {{$price}}</option>
         <option value="price_1250" {{isset($invoice->price_type)&&$invoice->price_type=='price_1250'?'selected':''}}>1250 {{$price}}</option>
+        <option value="price_1050" {{isset($invoice->price_type)&&$invoice->price_type=='price_1050'?'selected':''}}>1050 {{$price}}</option>
         <option value="price_1034" {{isset($invoice->price_type)&&$invoice->price_type=='price_1034'?'selected':''}}>1034 {{$price}}</option>
         @if(isseT($invoice)&&$invoice->type=='buy')
             <option value="price_31_a" {{isset($invoice->price_type)&&$invoice->price_type=='price_31_a'?'selected':''}}>a 31 {{$price}}</option>

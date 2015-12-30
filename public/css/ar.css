@@ -206,6 +206,9 @@ input, button{
     height: 50px;
     width:50px
 }
+.fe_el_nos_table{
+    display: none;
+}
 @media print{
    .Dashboard,.nav-color,#print,#edit_x,#delete_x
    {
@@ -253,11 +256,24 @@ input, button{
         /*width:10mm;*/
     }
     .items_row_break{
+        display:block;
         page-break-inside:avoid;
-        page-break-before:always;
+        page-break-after:always;
+    }
+    tr{
+        page-break-inside:avoid;
+    }
+    .final_calc{
+        page-break-inside:avoid;
+    }
+    .items_row{
+        page-break-inside:avoid;
     }
     .at_print{/* Table to print*/
         page-break-inside:auto;
+    }
+    .fe_el_nos_table{
+        display:table-row;
     }
     /*.bg_img{display:inline; z-index: -1 ;margin: 0 auto; position: absolute;}*/
     /** {-webkit-print-color-adjust:exact;}*/
