@@ -173,7 +173,7 @@
                                     {{$invoice->num( $item->name ) }}
                                 </td>
                             </tr>
-                            @if((($key)!=0)&&(($key+1)%8==0)&&(($key+1)!==count($invoice->items)))
+                            @if((($key)!=0)&&(($key+1)%7==0)&&(($key+1)!==count($invoice->items)))
                             </tbody>
                             </table>
                             <div class="items_row_break"></div>

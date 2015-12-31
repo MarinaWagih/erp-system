@@ -270,10 +270,11 @@ input, button{
         page-break-inside:avoid;
     }
     .at_print{/* Table to print*/
-        page-break-inside:auto;
+        page-break-inside:avoid;
     }
     .fe_el_nos_table{
         display:table-row;
+        page-break-inside:avoid;
     }
     /*.bg_img{display:inline; z-index: -1 ;margin: 0 auto; position: absolute;}*/
     /** {-webkit-print-color-adjust:exact;}*/
