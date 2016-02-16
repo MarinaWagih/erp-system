@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="739aacbf-31ec-43b3-98d7-73dacf1ef7dc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/client/_form.blade.php" afterPath="$PROJECT_DIR$/resources/views/client/_form.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/invoice/all.blade.php" afterPath="$PROJECT_DIR$/resources/views/invoice/all.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/images/icon-close.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/images/icon-print.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/invoice/_form.blade.php" afterPath="$PROJECT_DIR$/resources/views/invoice/_form.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/ar.css" afterPath="$PROJECT_DIR$/public/css/ar.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/invoice/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/invoice/create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/edit.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/invoice/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/invoice/show.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/ar/variables.php" afterPath="$PROJECT_DIR$/resources/lang/ar/variables.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Help_desk.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,12 +47,22 @@
       <file leaf-file-name="create.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/representative/create.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6857143" vertical-offset="0" max-vertical-offset="595">
-              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.20168068" vertical-offset="0" max-vertical-offset="595">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding>
                 <marker date="1447172136833" expanded="true" signature="321:609" placeholder="..." />
                 <marker date="1447172136833" expanded="true" signature="345:608" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="variables.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/lang/ar/variables.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.242424" vertical-offset="1840" max-vertical-offset="2448">
+              <caret line="88" column="30" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -82,7 +92,6 @@
         <option value="$PROJECT_DIR$/resources/views/item/show.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_08_27_204904_create_Invoice_table.php" />
         <option value="$PROJECT_DIR$/app/Invoice.php" />
-        <option value="$PROJECT_DIR$/resources/lang/ar/variables.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_08_17_100102_create_clients_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ClientsController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/InvoiceController.php" />
@@ -116,6 +125,7 @@
         <option value="$PROJECT_DIR$/resources/views/item/all.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/representative/all.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/representative/show.blade.php" />
+        <option value="$PROJECT_DIR$/resources/lang/ar/variables.php" />
       </list>
     </option>
   </component>
@@ -248,60 +258,6 @@
               <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Help_desk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Help_desk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="invoice" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Help_desk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Help_desk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Help_desk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Help_desk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -313,7 +269,7 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ontime" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="rou&#9;FILE&#9;file:///var/www/html/Help_desk/app/Http/routes.php&#10;app&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/views/app.blade.php&#10;prepa&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/public/js/invoicePreparation.js&#10;ar&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/public/css/ar.css&#10;addRepresentative&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/public/js/addRepresentative.js&#10;_&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/views/invoice/_form.blade.php&#10;itemc&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/app/Http/Controllers/ItemController.php&#10;invo&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/public/js/invoicePreparation.js&#10;in&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/public/js/invoicePreparation.js&#10;va&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/lang/ar/variables.php&#10;ed&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/views/invoice/edit.blade.php&#10;ar.c&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/public/css/ar.css&#10;invoice&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/app/Http/Controllers/InvoiceController.php&#10;vari&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/lang/ar/variables.php&#10;route&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/app/Http/routes.php&#10;rout&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/app/Http/routes.php&#10;var&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/lang/ar/variables.php&#10;all&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/views/representative/all.blade.php&#10;ro&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/app/Http/Controllers/Auth/AuthController.php" />
+    <property name="SearchEverywhereHistoryKey" value="ar/va&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/lang/ar/variables.php&#10;rou&#9;FILE&#9;file:///var/www/html/Help_desk/app/Http/routes.php&#10;app&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/views/app.blade.php&#10;prepa&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/public/js/invoicePreparation.js&#10;ar&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/public/css/ar.css&#10;addRepresentative&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/public/js/addRepresentative.js&#10;_&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/views/invoice/_form.blade.php&#10;itemc&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/app/Http/Controllers/ItemController.php&#10;invo&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/public/js/invoicePreparation.js&#10;in&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/public/js/invoicePreparation.js&#10;va&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/lang/ar/variables.php&#10;ed&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/views/invoice/edit.blade.php&#10;ar.c&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/public/css/ar.css&#10;invoice&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/app/Http/Controllers/InvoiceController.php&#10;vari&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/lang/ar/variables.php&#10;route&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/app/Http/routes.php&#10;rout&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/app/Http/routes.php&#10;var&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/lang/ar/variables.php&#10;all&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/resources/views/representative/all.blade.php&#10;ro&#9;FILE&#9;file:///home/marina/Desktop/Help_desk/app/Http/Controllers/Auth/AuthController.php" />
     <property name="FullScreen" value="false" />
     <property name="LayoutCode.rearrangeEntriesBlade" value="false" />
     <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
@@ -342,6 +298,9 @@
       <BehatRunner />
       <method />
     </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
@@ -349,9 +308,6 @@
       <arguments />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <list size="0" />
@@ -371,7 +327,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="24" width="1299" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -386,13 +342,13 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935917" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24942264" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24942264" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -412,9 +368,9 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20246343" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24942264" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24942264" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -440,13 +396,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/migrations/2015_08_17_095037_create_representatives_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5049342" vertical-offset="77" max-vertical-offset="1008">
-          <caret line="17" column="46" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/representative/_form.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4117647" vertical-offset="187" max-vertical-offset="1152">
@@ -792,10 +741,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/ar/variables.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.242424" vertical-offset="1840" max-vertical-offset="2448">
+          <caret line="88" column="30" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/representative/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6857143" vertical-offset="0" max-vertical-offset="595">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.20168068" vertical-offset="0" max-vertical-offset="595">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding>
             <marker date="1447172136833" expanded="true" signature="321:609" placeholder="..." />
             <marker date="1447172136833" expanded="true" signature="345:608" placeholder="..." />

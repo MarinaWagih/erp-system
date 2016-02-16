@@ -679,43 +679,60 @@
 
             });
 
+<<<<<<< HEAD
             $(document).on('click','#submit',function (e){
                 var flag=false;
+=======
+            $('#submit').on('click',function (e){
+                var flagDiscount=false;
+                var flagClient=false;
+                var flagDate=false;
+                var flagItem=false;
+>>>>>>> fb90eda81c0dc0d97b48f4c6de31b5f3a193af24
                 var discount=$('#discount_percentage').val();
                 var total_discount=$('#Total_invoice_discount').val();
                 var total=parseInt(discount)+parseInt(total_discount);
-                var client=$('#client_id').val();
+                var client=$('#clients').val();
                 var date=$('#date').val();
                 var msg='';
                 if(total>28)
                 {
-                    flag=true;
-                    msg +='<div>مجموع نسب الخصم لا يجب ان يتعدي ٢٨ ٪ </div>';
+                    flagDiscount=true;
+                    msg +="<div style='direction:rtl;'>@lang('variables.sum_of_discount_is_gt_28')</div>";
 
-                }else{flag=false;}
+                }else{flagDiscount=false;}
+                console.log(client,total,date,item_to_add);
                 if(client==undefined)
                 {
-                    flag=true;
+                    flagClient=true;
                     msg +='<div> العميل إجباري</div>';
-                }else{flag=false;}
+                }else{flagClient=false;}
+
                 if(date=='')
                 {
-                    flag=true;
+                    flagDate=true;
                     msg +='<div> التاريخ إجباري</div>';
-                }else{flag=false;}
+                }else{flagDate=false;}
+
                 if(jQuery.isEmptyObject(item_to_add))
                 {
-                    flag=true;
+                    flagItem=true;
                     msg +='<div> أضف أصناف</div>';
-                }else{flag=false;}
-                if(flag)
+                }else{flagItem=false;}
+                console.log(flagDiscount,flagClient,flagDate,flagItem);
+                if(flagDiscount||flagClient||flagDate||flagItem)
                 {
                     e.stopImmediatePropagation();
                     e.preventDefault();
                     $('#msg').addClass(" alert alert-danger");
+                    $('#msg').html('');
                     $('#msg').html('<strong>هناك خطأ</strong>');
                     $('#msg').append(msg);
+                    msg='';
 
+                }
+                else{
+                    $(this).unbind('submit').submit()
                 }
             });
 
