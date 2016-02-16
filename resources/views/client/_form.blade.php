@@ -83,6 +83,10 @@
     {!! Form::label('trading_address',$trading_address) !!}
     {!! Form::text('trading_address',null,['class'=>'form-control','placeholder'=>$write.' '.$trading_address]) !!}
 </div>
+{{--<div class="form-group">--}}
+    {{--{!! Form::label('trading_address',Lang::get('variables.visit_conclusion')) !!}--}}
+    {{--{!! Form::textarea('visit_conclusion',null,['class'=>'form-control','placeholder'=>$write.' '.Lang::get('variables.visit_conclusion')]) !!}--}}
+{{--</div>--}}
 <div class="form-group">
     {!! Form::label('date',$date) !!}
     {!! Form::input('date','date',date('Y-m-d'),['class'=>'form-control','id'=>'date']) !!}
@@ -93,7 +97,7 @@
         {!! Form::select('representative_id',$representatives,null,['class'=>'form-control',]) !!}
     @else
 
-      <input type="hidden" name='representative_id',value="{{Auth:: user()->representative->id}}" class=form-control']) >
+      <input type="hidden" name='representative_id',value="{{Auth:: user()->representative->id}}" class="form-control" >
     @endif
 </div>
 <div class="form-group">

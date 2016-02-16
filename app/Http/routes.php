@@ -58,5 +58,5 @@ Route::resource('/item','ItemController');
 Route::get('/invoice/{id}/delete','InvoiceController@destroy');
 Route::post('/invoice/search','InvoiceController@search');
 Route::get('/invoice/search','InvoiceController@search');
-Route::get('/invoice/search/{query}','InvoiceController@search_query');
+Route::get('/invoice/search/{query}/{query_id}{query_date}','InvoiceController@search_query');
 Route::resource('/invoice','InvoiceController');

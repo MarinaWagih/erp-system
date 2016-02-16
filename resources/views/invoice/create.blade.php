@@ -679,7 +679,7 @@
 
             });
 
-            $('#submit').on('click',function (e){
+            $(document).on('click','#submit',function (e){
                 var flag=false;
                 var discount=$('#discount_percentage').val();
                 var total_discount=$('#Total_invoice_discount').val();
@@ -710,6 +710,7 @@
                 }else{flag=false;}
                 if(flag)
                 {
+                    e.stopImmediatePropagation();
                     e.preventDefault();
                     $('#msg').addClass(" alert alert-danger");
                     $('#msg').html('<strong>هناك خطأ</strong>');

@@ -12,6 +12,7 @@ class InvoiceController extends Controller
      * Number of pagination result
      */
     protected $pagination_No = 10;
+
     /**
      * Constructor
      * to add Middleware That needed to this controller
@@ -24,6 +25,7 @@ class InvoiceController extends Controller
         $this->middleware('auth');
         $this->middleware('admin', ['only' => ['delete']]);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -46,6 +48,7 @@ class InvoiceController extends Controller
         }
         return view('invoice.all')->with(['invoices' => $invoices]);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -64,6 +67,7 @@ class InvoiceController extends Controller
 //        }
         return view('invoice.create');
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -83,6 +87,7 @@ class InvoiceController extends Controller
         $invoice->items()->sync($items);
         return view('invoice.show')->with(['invoice' => $invoice]);
     }
+
     /**
      * Display the specified resource.
      *
@@ -112,6 +117,7 @@ class InvoiceController extends Controller
                 ->with(['msg' => 'variables.not_found']);
         }
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -147,6 +153,7 @@ class InvoiceController extends Controller
                 ->with(['msg' => 'variables.not_found']);
         }
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -173,6 +180,7 @@ class InvoiceController extends Controller
                 ->with(['msg' => 'variables.not_found']);
         }
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -184,62 +192,87 @@ class InvoiceController extends Controller
         Invoice::destroy($id);
         return redirect('invoice');
     }
+
     /**
      * @param Request $request
      * @return $this|\Illuminate\Http\JsonResponse
      */
     public function search(Request $request)
     {
+        $query=$request->get('query')!=null?$request->get('query'):'';
+        $query_id=$request->get('query_id')!=null?$request->get('query_id'):'';
+        $query_date=$request->get('query_date')!=null?$request->get('query_date'):'2015-01-01';
+//        dd($query,$query_date,$query_id);
         if(Auth::user()->type=='representative') {
             $id = Auth::user()->id;
-//            $rep = Representative::where(['user_id' => $id])->take(1)->get();
-            $invoices = Invoice::where('clients.representative_id','=',$id)
-                ->where('invoices.id','like',$request->get('query')."%")
-                ->orWhere('invoices.date','like',$request->get('query')."%")
-                ->join('clients','clients.id','=','invoices.client_id')
-                ->paginate($this->pagination_No)
-                ->setPath(url() . '/invoice/search/'.$request->get('query'));
+            $invoices = Invoice::select('invoices.*')->with('client')
+                ->join('clients', 'clients.id', '=', 'invoices.client_id')
+                ->where('clients.representative_id','=',$id)
+                ->where('clients.name','like',$query."%")
+                ->where('invoices.id','like',$query_id."%")
+                ->Where('invoices.date','>=',$query_date)
+                ->get();
+
+//                ->paginate($this->pagination_No)
+//                ->setPath(url() . '/invoice/search/'.$query.'/'.$query_id.'/'.$query_date);
         }
         else
         {
-            $invoices =Invoice::where('id','like',$request->get('query')."%")
-                ->orWhere('date','like',$request->get('query')."%")
-                ->paginate($this->pagination_No)
-                ->setPath(url() . '/invoice/search/'.$request->get('query'));
+            $invoices =Invoice::select('invoices.*')->with('client')
+                ->join('clients', 'clients.id', '=', 'invoices.client_id')
+                ->where('clients.name','like',"%".$query."%")
+                ->where('invoices.id','like',"%".$query_id."%")
+                ->Where('invoices.date','>=',$query_date)
+                ->get();
         }
         $result = $invoices->toArray();
-        $result['render'] = $invoices->render();
+//        $result['render'] = $invoices->render();
         if ($request->get('type') == 'json') {
             return response()->json($result);
         }
         return view('invoice.all')->with(['invoices' => $invoices]);
     }
-    public function search_query(Request $request,$query)
-    {
-        if(Auth::user()->type=='representative') {
-            $id = Auth::user()->id;
-//            $rep = Representative::where(['user_id' => $id])->take(1)->get();
-            $invoices = Invoice::where('clients.representative_id','=',$id)
-                ->where('invoices.id','like',$query."%")
-                ->orWhere('invoices.date','like',$query."%")
-                ->join('clients','clients.id','=','invoices.client_id')
-                ->paginate($this->pagination_No)
-                ->setPath(url() . '/invoice/search/'.$query);
-        }
-        else
-        {
-            $invoices =Invoice::where('id','like',$query."%")
-                ->orWhere('date','like',$query."%")
-                ->paginate($this->pagination_No)
-                ->setPath(url() . '/invoice/search/'.$query);
-        }
-        $result = $invoices->toArray();
-        $result['render'] = $invoices->render();
-        if ($request->get('type') == 'json') {
-            return response()->json($result);
-        }
-        return view('invoice.all')->with(['invoices' => $invoices]);
-    }
+
+    /**
+    *public function search_query(Request $request,$query,$query_id,$query_date)
+    *    {
+    *        if(Auth::user()->type=='representative') {
+    *            $id = Auth::user()->id;
+    *            $rep = Representative::where(['user_id' => $id])->take(1)->get();
+    *            $invoices = Invoice::where('clients.representative_id','=',$id)
+    *                ->where('clients.name','like',$query."%")
+    *                ->where('invoices.id','like',$query_id."%")
+    *                ->orWhere('invoices.date','like',$query_date."%")
+    *                ->join('clients', function($join)
+    *                {
+    *                    $join->on('clients.id', '=', 'invoices.client_id');
+    *
+    *                });
+    *                ->paginate($this->pagination_No)
+    *                ->setPath(url() . '/invoice/search/'.$query.'/'.$query_id.'/'.$query_date);
+    *        }
+    *        else
+    *        {
+    *            $invoices =Invoice::with('client')
+    *                ->where('clients.name','like',$query."%")
+    *                ->where('invoices.id','like',"%".$query_id."%")
+    *                ->orWhere('invoices.date','>=',$query_date)
+    *                ->join('clients', function($join)
+    *                {
+    *                    $join->on('clients.id', '=', 'invoices.client_id');
+    *
+    *                });
+    *                ->paginate($this->pagination_No)
+    *                ->setPath(url() . '/invoice/search/'.$query.'/'.$query_id.'/'.$query_date);        }
+    *        $result = $invoices->toArray();
+    *        $result['render'] = $invoices->render();
+    *        if ($request->get('type') == 'json') {
+    *            return response()->json($result);
+    *        }
+    *        return view('invoice.all')->with(['invoices' => $invoices]);
+    *    }
+    */
+
     /**
      * @param $items list of items in invoice
      * @return array of prepared array to sync in db
