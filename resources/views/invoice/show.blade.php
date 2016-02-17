@@ -204,7 +204,7 @@
         {{--========================================================--}}
         {{--===================calculations=========================--}}
         {{--========================================================--}}
-        <div class="row final_calc" style="direction: rtl">
+        <div class="row final_calc masafa" style="direction: rtl">
             <table class="table table-responsive" >
                 <tr>
                     <td>@lang('variables.total') @lang('variables.price') @lang('variables.before') @lang('variables.discount')</td>

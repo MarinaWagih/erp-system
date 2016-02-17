@@ -117,7 +117,6 @@ class InvoiceController extends Controller
                 ->with(['msg' => 'variables.not_found']);
         }
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -153,7 +152,6 @@ class InvoiceController extends Controller
                 ->with(['msg' => 'variables.not_found']);
         }
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -180,7 +178,6 @@ class InvoiceController extends Controller
                 ->with(['msg' => 'variables.not_found']);
         }
     }
-
     /**
      * Remove the specified resource from storage.
      *
